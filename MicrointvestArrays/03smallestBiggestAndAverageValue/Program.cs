@@ -7,19 +7,20 @@ namespace _03smallestBiggestAndAverageValue
     {
         public static void Main(string[] args)
         {
+            // HAshset
             int n = int.Parse(Console.ReadLine());
-            double[] numbers = new double[n];
+            int[] numbers = new int[n];
 
             numbers = Console.ReadLine()
                 .Split(' ', StringSplitOptions.RemoveEmptyEntries)
-                .Select(double.Parse)
+                .Select(int.Parse)
                 .ToArray();
 
             //double minValue = numbers.Min();
             //double maxValue = numbers.Max();
 
-            double smallestNumber = double.MaxValue;
-            double biggestNumber = double.MinValue;
+            int smallestNumber = int.MaxValue;
+            int biggestNumber = int.MinValue;
             double sum = 0;
 
             for (int i = 0; i < numbers.Length; i++)
