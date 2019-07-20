@@ -7,38 +7,37 @@ namespace _03smallestBiggestAndAverageValue
     {
         public static void Main(string[] args)
         {
-            // HAshset
-            int n = int.Parse(Console.ReadLine());
-            int[] numbers = new int[n];
+            int arrayLength = 0;
 
-            numbers = Console.ReadLine()
-                .Split(' ', StringSplitOptions.RemoveEmptyEntries)
-                .Select(int.Parse)
-                .ToArray();
-
-            //double minValue = numbers.Min();
-            //double maxValue = numbers.Max();
-
-            int smallestNumber = int.MaxValue;
-            int biggestNumber = int.MinValue;
-            double sum = 0;
-
-            for (int i = 0; i < numbers.Length; i++)
+            if (int.TryParse(Console.ReadLine(), out arrayLength))
             {
-                if (numbers[i] < smallestNumber)
+                int[] numbers = new int[arrayLength];
+
+                numbers = Console.ReadLine()
+                    .Split(' ', StringSplitOptions.RemoveEmptyEntries)
+                    .Select(int.Parse)
+                    .ToArray();
+
+                int smallestNumber = int.MaxValue;
+                int biggestNumber = int.MinValue;
+                double sum = 0;
+
+                for (int i = 0; i < numbers.Length; i++)
                 {
-                    smallestNumber = numbers[i];
-                }
-                if (numbers[i] > biggestNumber)
-                {
-                    biggestNumber = numbers[i];
+                    if (numbers[i] < smallestNumber)
+                    {
+                        smallestNumber = numbers[i];
+                    }
+                    if (numbers[i] > biggestNumber)
+                    {
+                        biggestNumber = numbers[i];
+                    }
+
+                    sum += numbers[i];
                 }
 
-                sum += numbers[i];
+                Console.WriteLine($"{smallestNumber}, {biggestNumber}, {sum / numbers.Length}");
             }
-                                //minValue          //maxValue
-            Console.WriteLine($"{smallestNumber}, {biggestNumber}, {sum / numbers.Length}");
-
         }
     }
 }

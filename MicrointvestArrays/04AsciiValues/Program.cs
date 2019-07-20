@@ -7,7 +7,7 @@ namespace _04AsciiValues
     {
         public static void Main(string[] args)
         {
-            int[] range = Console.ReadLine()
+            int[] ASCIIRange = Console.ReadLine()
                 .Split(' ', StringSplitOptions.RemoveEmptyEntries)
                 .Select(int.Parse)
                 .ToArray();
@@ -16,7 +16,7 @@ namespace _04AsciiValues
 
             for (int i = 0; i < chars.Length; i++)
             {
-                if ((int)chars[i] >= range[0] && (int)chars[i] <= range[1])
+                if ((int)chars[i] >= ASCIIRange[0] && (int)chars[i] <= ASCIIRange[1])
                 {
                     Console.Write(chars[i] + " ");
                 }

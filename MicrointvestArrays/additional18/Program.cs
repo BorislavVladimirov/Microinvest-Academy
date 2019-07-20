@@ -6,13 +6,15 @@ namespace additional18
     {
         public static void Main(string[] args)
         {
-            if (int.TryParse(Console.ReadLine(), out int dimention))
-            {
-                int[,] firstMatrix = new int[dimention, dimention];
-                int[,] secondMatrix = new int[dimention, dimention];
+            int dimension = 0;
 
-                GenerateMatrix(firstMatrix, dimention);
-                GenerateMatrix(secondMatrix, dimention);
+            if (int.TryParse(Console.ReadLine(), out dimension))
+            {
+                int[,] firstMatrix = new int[dimension, dimension];
+                int[,] secondMatrix = new int[dimension, dimension];
+
+                GenerateMatrix(firstMatrix, dimension);
+                GenerateMatrix(secondMatrix, dimension);
 
                 Console.WriteLine(Compare(firstMatrix, secondMatrix));
             }
@@ -34,15 +36,17 @@ namespace additional18
             return true;
         }
 
-        private static void GenerateMatrix(int[,] matrix, int dimention)
+        private static void GenerateMatrix(int[,] matrix, int dimension)
         {
-            for (int i = 0; i < dimention; i++)
+            for (int i = 0; i < dimension; i++)
             {
-                for (int j = 0; j < dimention; j++)
+                for (int j = 0; j < dimension; j++)
                 {
                     Console.WriteLine("Enter number");
 
-                    if (int.TryParse(Console.ReadLine(), out int number))
+                    int number = 0;
+
+                    if (int.TryParse(Console.ReadLine(), out number))
                     {
                         matrix[i, j] = number;
                     }

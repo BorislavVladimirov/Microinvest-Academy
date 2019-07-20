@@ -6,11 +6,13 @@ namespace multidimensionalAarrays02
     {
         public static void Main(string[] args)
         {
-            if (int.TryParse(Console.ReadLine(), out int dimention))
-            {
-                int[,] matrix = new int[dimention, dimention];
+            int dimension = 0;
 
-                GenerateMatrix(matrix, dimention);
+            if (int.TryParse(Console.ReadLine(), out dimension))
+            {
+                int[,] matrix = new int[dimension, dimension];
+
+                GenerateMatrix(matrix, dimension);
 
                 Console.WriteLine(GetSum(matrix));
             }
@@ -20,26 +22,28 @@ namespace multidimensionalAarrays02
         {
             int sum = 0;
 
-            for (int i = 0; i < matrix.GetLength(0); i++)
+            for (int row = 0; row < matrix.GetLength(0); row++)
             {
-                for (int j = 0; j < matrix.GetLength(1); j++)
+                for (int col = 0; col < matrix.GetLength(1); col++)
                 {
-                    sum += matrix[i, j];
+                    sum += matrix[row, col];
                 }
             }
 
             return sum;
         }
 
-        private static void GenerateMatrix(int[,] matrix, int dimention)
+        private static void GenerateMatrix(int[,] matrix, int dimension)
         {
-            for (int i = 0; i < dimention; i++)
+            for (int i = 0; i < dimension; i++)
             {
-                for (int j = 0; j < dimention; j++)
+                for (int j = 0; j < dimension; j++)
                 {
                     Console.WriteLine("Enter number");
 
-                    if (int.TryParse(Console.ReadLine(), out int number))
+                    int number = 0;
+
+                    if (int.TryParse(Console.ReadLine(), out number))
                     {
                         matrix[i, j] = number;
                     }

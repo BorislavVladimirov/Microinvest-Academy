@@ -9,7 +9,12 @@ namespace _05passwordValidation
         {
             char[] password = Console.ReadLine().ToCharArray();
 
-            HashSet<string> unfulfilledCriteries = new HashSet<string>(); 
+            List<string> unfulfilledCriteries = new List<string> {
+                "минимална дължина от 6 символа"
+                , "поне една цифра"
+                , "поне една голяма буква"
+                ,"поне една малка буква"
+                ,"поне един символ различен от цифра и буква"};
 
             IsPasswordValid(password, unfulfilledCriteries);
 
@@ -25,30 +30,30 @@ namespace _05passwordValidation
             }
         }
 
-        private static void IsPasswordValid(char[] password, HashSet<string> unfulfilledCriteries)
+        private static void IsPasswordValid(char[] password, List<string> unfulfilledCriteries)
         {
-            if (password.Length < 6)
+            if (password.Length >= 6)
             {
-                unfulfilledCriteries.Add("минимална дължина от 6 символа");
+                unfulfilledCriteries.Remove("минимална дължина от 6 символа");
             }
 
             for (int i = 0; i < password.Length; i++)
             {
-                if (!char.IsDigit(password[i]))
+                if (char.IsDigit(password[i]))
                 {
-                    unfulfilledCriteries.Add("поне една цифра");
+                    unfulfilledCriteries.Remove("поне една цифра");
                 }
-                if (!char.IsUpper(password[i]))
+                if (char.IsUpper(password[i]))
                 {
-                    unfulfilledCriteries.Add("поне една голяма буква");
+                    unfulfilledCriteries.Remove("поне една голяма буква");
                 }
-                if (!char.IsLower(password[i]))
+                if (char.IsLower(password[i]))
                 {
-                    unfulfilledCriteries.Add("поне една малка буква");
+                    unfulfilledCriteries.Remove("поне една малка буква");
                 }
-                if (char.IsLetterOrDigit(password[i]))
+                if (!char.IsLetterOrDigit(password[i]))
                 {
-                    unfulfilledCriteries.Add("поне един символ различен от цифра и буква");
+                    unfulfilledCriteries.Remove("поне един символ различен от цифра и буква");
                 }
             }
         }

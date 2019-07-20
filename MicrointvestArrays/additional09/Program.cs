@@ -17,7 +17,7 @@ namespace additional09
                 array[array.Length - 1 - i] = tempChar;
             }
 
-            Console.WriteLine(string.Join("",array));
+            Console.WriteLine(string.Join("", array));
         }
     }
 }

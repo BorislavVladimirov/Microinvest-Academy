@@ -6,23 +6,27 @@ namespace miltidimentionalArrays01
     {
         public static void Main(string[] args)
         {
-            if (int.TryParse(Console.ReadLine(), out int dimention))
+            int dimension = 0;
+
+            if (int.TryParse(Console.ReadLine(), out dimension))
             {
-                int[,] matrix = new int[dimention, dimention];
+                int[,] matrix = new int[dimension, dimension];
                 int biggestNum = int.MinValue;
 
-                for (int i = 0; i < dimention; i++)
+                for (int row = 0; row < dimension; row++)
                 {
-                    for (int j = 0; j < dimention; j++)
+                    for (int col = 0; col < dimension; col++)
                     {
                         Console.WriteLine("Enter number");
-                        int.TryParse(Console.ReadLine(), out int number);
 
-                        matrix[i, j] = number;
+                        int number = 0;
+                        int.TryParse(Console.ReadLine(), out number);
 
-                        if (matrix[i, j] > biggestNum)
+                        matrix[row, col] = number;
+
+                        if (matrix[row, col] > biggestNum)
                         {
-                            biggestNum = matrix[i, j];
+                            biggestNum = matrix[row, col];
                         }
                     }
                 }

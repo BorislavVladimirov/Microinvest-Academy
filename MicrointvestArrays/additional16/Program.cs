@@ -7,14 +7,39 @@ namespace additional16
     {
         public static void Main(string[] args)
         {
-            string input = Console.ReadLine().ToLower();
+            string inputString = Console.ReadLine().ToLower();
 
-            if (IsValidChar(input))
+            if (IsValidChar(inputString))
             {
-                char[] sorted = input.OrderBy(x => x).ToArray();
+                char[] sortedInput = inputString.ToCharArray();
 
-                Console.WriteLine(string.Join("", sorted));
+                SortArray(sortedInput);
+
+                Console.WriteLine(string.Join("", sortedInput));
             }            
+        }
+
+        private static void SortArray(char[] sortedInput)
+        {
+            for (int i = 0; i < sortedInput.Length; i++)
+            {
+                int index = -1;
+                int minValue = int.MaxValue;
+
+                for (int j = i; j < sortedInput.Length; j++)
+                {
+                    int currentChar = (int)sortedInput[j];
+
+                    if (currentChar < minValue)
+                    {
+                        minValue = currentChar;
+                        index = j;
+                    }
+                }
+
+                sortedInput[index] = sortedInput[i];
+                sortedInput[i] = (char)minValue;
+            }
         }
 
         private static bool IsValidChar(string input)

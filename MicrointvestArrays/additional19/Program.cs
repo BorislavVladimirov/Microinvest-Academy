@@ -1,9 +1,11 @@
 ﻿using System;
 
-namespace additional08
+namespace additional19
 {
     public class Program
     {
+        private const double index = 0.5;
+
         public static void Main(string[] args)
         {
             int dimension = 0;
@@ -14,24 +16,32 @@ namespace additional08
 
                 GenerateMatrix(matrix, dimension);
 
-                Console.WriteLine(GetRightDiagonalSum(matrix));
+                Console.WriteLine(IsMatrixSparse(matrix));
             }
         }
 
-        private static int GetRightDiagonalSum(int[,] matrix)
+        private static bool IsMatrixSparse(int[,] matrix)
         {
-            int sum = 0;
+            double totalElementsCount = matrix.GetLength(0) * matrix.GetLength(1);
+            double zerosCounter = 0;
 
             for (int row = 0; row < matrix.GetLength(0); row++)
             {
-                for (int col = matrix.GetLength(1) - 1; col >= 0; col--)
+                for (int col = 0; col < matrix.GetLength(1); col++)
                 {
-                    sum += matrix[row, col];
-                    row++;
+                    if (matrix[row,col] == 0)
+                    {
+                        zerosCounter++;
+                    }
                 }
             }
 
-            return sum;
+            if (zerosCounter / totalElementsCount > index)
+            {
+                return true;
+            }
+
+            return false;
         }
 
         private static void GenerateMatrix(int[,] matrix, int dimension)

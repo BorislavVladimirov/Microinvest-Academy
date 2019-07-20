@@ -7,22 +7,47 @@ namespace additional04
     {
         public static void Main(string[] args)
         {
-            if (int.TryParse(Console.ReadLine(), out int n))
-            {
-                double[] array = new double[n];
+            int arrayLength = 0;
 
-                double[] input = Console.ReadLine()
+            if (int.TryParse(Console.ReadLine(), out arrayLength))
+            {
+                double[] array = new double[arrayLength];
+                int index = -1;
+
+                array = Console.ReadLine()
                     .Split()
                     .Select(double.Parse)
                     .ToArray();
 
-                array = input;
+                for (int i = 0; i < arrayLength; i++)
+                {
+                    double maxValue = double.MinValue;
 
-                double[] sorted = array.OrderBy(x => x).ToArray();
-                double[] sortedByDescending = array.OrderByDescending(x => x).ToArray();
+                    for (int j = i; j < arrayLength; j++)
+                    {
+                        if (array[j] > maxValue)
+                        {
+                            maxValue = array[j];
+                            index = j;
+                        }
+                    }
 
-                Console.Write(string.Join(" ", sortedByDescending) + " ");
-                Console.WriteLine(string.Join(" ", sorted));
+                    array[index] = array[i];
+                    array[i] = maxValue;
+                }
+
+                Console.Write(string.Join(" ", array) + " ");
+
+                for (int i = 0; i < array.Length / 2; i++)
+                {
+                    double tempNumber = array[i];
+
+                    int indexToSwap = array.Length - 1 - i;
+                    array[i] = array[indexToSwap];
+                    array[indexToSwap] = tempNumber;
+                }
+
+                Console.WriteLine(string.Join(" ", array));
             }
         }
     }

@@ -7,20 +7,36 @@ namespace additional01
     {
         public static void Main(string[] args)
         {
-            if (int.TryParse(Console.ReadLine(), out int n))
-            {
-                int[] array = new int[n];
+            int arrayLength = 0;
 
-                int[] input = Console.ReadLine()
+            if (int.TryParse(Console.ReadLine(), out arrayLength))
+            {
+                int[] array = new int[arrayLength];
+                int index = -1;
+
+                array = Console.ReadLine()
                     .Split()
                     .Select(int.Parse)
                     .ToArray();
 
-                array = input;
+                for (int i = 0; i < arrayLength; i++)
+                {
+                    int minValue = int.MaxValue;
 
-                int[] sorted = array.OrderBy(x => x).ToArray();
+                    for (int j = i; j < arrayLength; j++)
+                    {
+                        if (array[j] < minValue)
+                        {
+                            minValue = array[j];
+                            index = j;
+                        }
+                    }
 
-                Console.WriteLine(string.Join(" ", sorted));
+                    array[index] = array[i];
+                    array[i] = minValue;
+                }
+
+                Console.WriteLine(string.Join(" ", array));
             }
         }
     }

@@ -7,11 +7,30 @@ namespace additional10
     {
         static void Main(string[] args)
         {
-            char[] input = Console.ReadLine().ToCharArray();
+            char[] charArray = Console.ReadLine().ToCharArray();
 
-            char[] sorted = input.OrderBy(x => (int)x).ToArray();
+            for (int i = 0; i < charArray.Length; i++)
+            {
+                int index = -1;
+                int minValue = int.MaxValue;
 
-            Console.WriteLine(string.Join("",sorted));
+                for (int j = i; j < charArray.Length; j++)
+                {
+                    int currentChar = (int)charArray[j];
+
+                    if (currentChar < minValue)
+                    {
+                        minValue = currentChar;
+                        index = j;
+                    }
+                }
+
+                charArray[index] = charArray[i];
+                charArray[i] = (char)minValue;
+            }
+
+            //Console.WriteLine(string.Join("", charArray.OrderBy(x => (int)x)));
+            Console.WriteLine(string.Join("", charArray));
         }
     }
 }

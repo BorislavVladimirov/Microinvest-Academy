@@ -6,11 +6,13 @@ namespace additional07
     {
         public static void Main(string[] args)
         {
-            if (int.TryParse(Console.ReadLine(), out int dimention))
-            {
-                int[,] matrix = new int[dimention, dimention];
+            int dimension = 0;
 
-                GenerateMatrix(matrix, dimention);
+            if (int.TryParse(Console.ReadLine(), out dimension))
+            {
+                int[,] matrix = new int[dimension, dimension];
+
+                GenerateMatrix(matrix, dimension);
 
                 Console.WriteLine(GetLeftDiagonalSum(matrix));
             }
@@ -32,15 +34,17 @@ namespace additional07
             return sum;
         }
 
-        private static void GenerateMatrix(int[,] matrix, int dimention)
+        private static void GenerateMatrix(int[,] matrix, int dimension)
         {
-            for (int i = 0; i < dimention; i++)
+            for (int i = 0; i < dimension; i++)
             {
-                for (int j = 0; j < dimention; j++)
+                for (int j = 0; j < dimension; j++)
                 {
                     Console.WriteLine("Enter number");
 
-                    if (int.TryParse(Console.ReadLine(), out int number))
+                    int number = 0;
+
+                    if (int.TryParse(Console.ReadLine(), out number))
                     {
                         matrix[i, j] = number;
                     }

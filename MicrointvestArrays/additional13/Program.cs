@@ -6,13 +6,15 @@ namespace additional13
     {
         public static void Main(string[] args)
         {
-            if (int.TryParse(Console.ReadLine(), out int dimention))
-            {
-                int[,] firstMatrix = new int[dimention, dimention];
-                int[,] secondMatrix = new int[dimention, dimention];
+            int dimension = 0;
 
-                GenerateMatrix(firstMatrix, dimention);
-                GenerateMatrix(secondMatrix, dimention);
+            if (int.TryParse(Console.ReadLine(), out dimension))
+            {
+                int[,] firstMatrix = new int[dimension, dimension];
+                int[,] secondMatrix = new int[dimension, dimension];
+
+                GenerateMatrix(firstMatrix, dimension);
+                GenerateMatrix(secondMatrix, dimension);
 
                 Console.WriteLine(GetSum(firstMatrix, secondMatrix));
             }
@@ -20,37 +22,32 @@ namespace additional13
 
         private static int GetSum(int[,] firstMatrix, int[,] secondMatrix)
         {
-            int firstSum = 0;
-            int secondSum = 0;
+            int firstMatrixSum = 0;
+            int secondMatrixSum = 0;
 
             for (int row = 0; row < firstMatrix.GetLength(0); row++)
             {
                 for (int col = 0; col < firstMatrix.GetLength(1); col++)
                 {
-                    firstSum += firstMatrix[row, col];
+                    firstMatrixSum += firstMatrix[row, col];
+                    secondMatrixSum += secondMatrix[row, col];
                 }
             }
 
-            for (int row = 0; row < secondMatrix.GetLength(0); row++)
-            {
-                for (int col = 0; col < secondMatrix.GetLength(1); col++)
-                {
-                    secondSum += secondMatrix[row, col];
-                }
-            }
-
-            return firstSum * secondSum;
+            return firstMatrixSum * secondMatrixSum;
         }
 
-        private static void GenerateMatrix(int[,] matrix, int dimention)
+        private static void GenerateMatrix(int[,] matrix, int dimension)
         {
-            for (int i = 0; i < dimention; i++)
+            for (int i = 0; i < dimension; i++)
             {
-                for (int j = 0; j < dimention; j++)
+                for (int j = 0; j < dimension; j++)
                 {
                     Console.WriteLine("Enter number");
 
-                    if (int.TryParse(Console.ReadLine(), out int number))
+                    int number = 0;
+
+                    if (int.TryParse(Console.ReadLine(), out number))
                     {
                         matrix[i, j] = number;
                     }

@@ -7,22 +7,26 @@ namespace _02NnumsSum
     {
         public static void Main(string[] args)
         {
-            int n = int.Parse(Console.ReadLine());
-            double[] numbers = new double[n];
+            int arrayLength = 0;
 
-            numbers = Console.ReadLine()
-                .Split(' ', StringSplitOptions.RemoveEmptyEntries)
-                .Select(double.Parse)
-                .ToArray();
-
-            double sum = 0;
-
-            foreach (var number in numbers)
+            if (int.TryParse(Console.ReadLine(), out arrayLength))
             {
-                sum += number;
-            }
+                double[] numbers = new double[arrayLength];
 
-            Console.WriteLine(sum);
+                numbers = Console.ReadLine()
+                    .Split(' ', StringSplitOptions.RemoveEmptyEntries)
+                    .Select(double.Parse)
+                    .ToArray();
+
+                double sum = 0;
+
+                foreach (var number in numbers)
+                {
+                    sum += number;
+                }
+
+                Console.WriteLine(sum);
+            }            
         }
     }
 }

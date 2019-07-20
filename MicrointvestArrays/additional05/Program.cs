@@ -7,18 +7,26 @@ namespace additional05
     {
         public static void Main(string[] args)
         {
-            if (int.TryParse(Console.ReadLine(), out int n))
-            {
-                int[] array = new int[n];
+            int arrayLength = 0;
 
-                int[] input = Console.ReadLine()
+            if (int.TryParse(Console.ReadLine(), out arrayLength))
+            {
+                int[] array = new int[arrayLength];
+
+                array = Console.ReadLine()
                     .Split()
                     .Select(int.Parse)
                     .ToArray();
 
-                array = input;
+                //Console.WriteLine(string.Join(" ", array.Where(x => x % 15 == 0)));
 
-                Console.WriteLine(string.Join(" ", array.Where(x => x % 15 == 0)));
+                foreach (var number in array)
+                {
+                    if (number % 15 == 0)
+                    {
+                        Console.WriteLine(number);
+                    }
+                }
             }
         }
     }
