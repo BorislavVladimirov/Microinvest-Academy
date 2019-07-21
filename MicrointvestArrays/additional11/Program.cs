@@ -10,7 +10,6 @@ namespace additional11
 
             GenerateMatrix(matrix, 2);
 
-            //only for 2x2 matrix
             Console.WriteLine(GetDeterminant(matrix));
         }
 
@@ -33,11 +32,12 @@ namespace additional11
                 for (int col = 0; col < matrix.GetLength(0); col++)
                 {
                     leftDiagonaleSum *= matrix[row, col];
-                    row++;                        
+                    row++;
                 }
             }
 
             return leftDiagonaleSum - rightDiagonaleSum;
+
         }
 
         private static void GenerateMatrix(int[,] matrix, int dimention)

@@ -8,17 +8,24 @@ namespace additional20
     {
         public static void Main(string[] args)
         {
-            int dimension = 3;
+            int dimension = 0;
 
-            int[,] matrix = new int[dimension, dimension];
+            if (int.TryParse(Console.ReadLine(), out dimension))
+            {
+                int[,] matrix = new int[dimension, dimension];
 
-            GenerateMatrix(matrix, dimension);
+                GenerateMatrix(matrix, dimension);
 
-            GetTriangleWithSmallestSum(matrix);
+                GetTriangleWithSmallestSum(matrix);
+            }
         }
 
         private static void GetTriangleWithSmallestSum(int[,] matrix)
         {
+            int minSum = int.MaxValue;
+            List<Point> indexesToPrint = new List<Point>();
+            List<Point> tempList = new List<Point>();
+
             int leftDownTriangleSum = 0;
             int rightDownTriangleSum = 0;
             int leftUpTriangleSum = 0;
@@ -31,9 +38,15 @@ namespace additional20
                 for (int col = startingCol; col >= 0; col--)
                 {
                     leftDownTriangleSum += matrix[row, col];
+                    indexesToPrint.Add(new Point(row, col));
                 }
 
                 startingCol--;
+            }
+
+            if (leftDownTriangleSum < minSum)
+            {
+                minSum = leftDownTriangleSum;
             }
 
             startingCol = 0;
@@ -43,85 +56,77 @@ namespace additional20
                 for (int col = startingCol; col < matrix.GetLength(1); col++)
                 {
                     rightDownTriangleSum += matrix[row, col];
+                    tempList.Add(new Point(row, col));
                 }
 
                 startingCol++;
             }
 
+            if (rightDownTriangleSum < minSum)
+            {
+                minSum = rightDownTriangleSum;
+                indexesToPrint = new List<Point>(tempList);
+            }
+
             startingCol = matrix.GetLength(1) - 1;
+            tempList = new List<Point>();
 
             for (int row = 0; row < matrix.GetLength(0); row++)
             {
                 for (int col = startingCol; col >= 0; col--)
                 {
                     leftUpTriangleSum += matrix[row, col];
+                    tempList.Add(new Point(row, col));
                 }
 
                 startingCol--;
             }
 
-            startingCol = 0;
+            if (leftUpTriangleSum < minSum)
+            {
+                minSum = leftUpTriangleSum;
+                indexesToPrint = new List<Point>(tempList);
+            }
 
+            startingCol = 0;
+            tempList = new List<Point>();
+            
             for (int row = 0; row < matrix.GetLength(0); row++)
             {
                 for (int col = startingCol; col < matrix.GetLength(1); col++)
                 {
                     rightUpTriangleSum += matrix[row, col];
+                    tempList.Add(new Point(row, col));
                 }
 
                 startingCol++;
             }
-            
-            ModifyMatrix(matrix, leftDownTriangleSum, rightDownTriangleSum, leftUpTriangleSum, rightUpTriangleSum);
+
+            if (rightUpTriangleSum < minSum)
+            {
+                minSum = rightUpTriangleSum;
+                indexesToPrint = new List<Point>(tempList);
+            }
+
+            PrintMatrix(matrix, indexesToPrint);
         }
 
-        private static void ModifyMatrix(int[,] matrix, 
-            int leftDownTriangleSum, 
-            int rightDownTriangleSum,
-            int leftUpTriangleSum, 
-            int rightUpTriangleSum)
-        {
-            if (leftDownTriangleSum < rightUpTriangleSum
-                && leftDownTriangleSum < leftUpTriangleSum
-                && leftDownTriangleSum < rightUpTriangleSum)
-            {
-                matrix[0, 1] = 0;
-                matrix[0, 2] = 0;
-                matrix[1, 2] = 0;
-            }
-            else if (rightDownTriangleSum < leftDownTriangleSum
-                && rightDownTriangleSum < leftUpTriangleSum
-                && rightDownTriangleSum < rightUpTriangleSum)
-            {
-                matrix[0, 0] = 0;
-                matrix[0, 1] = 0;
-                matrix[1, 0] = 0;
-            }
-            else if (leftUpTriangleSum < leftDownTriangleSum
-                && leftUpTriangleSum < rightDownTriangleSum
-                && leftUpTriangleSum < rightUpTriangleSum)
-            {
-                matrix[1, 2] = 0;
-                matrix[2, 1] = 0;
-                matrix[2, 2] = 0;
-            }
-            else
-            {
-                matrix[1, 0] = 0;
-                matrix[2, 0] = 0;
-                matrix[2, 1] = 0;
-            }
-
-            PrintMatrix(matrix);
-        }
-
-        private static void PrintMatrix(int[,] matrix)
+        private static void PrintMatrix(int[,] matrix, List<Point> indexesToPrint)
         {
             for (int row = 0; row < matrix.GetLength(0); row++)
             {
                 for (int col = 0; col < matrix.GetLength(1); col++)
                 {
-                    Console.Write(matrix[row,col] + " ");
+                    Point currentPoint = new Point(row, col);
+
+                    if (indexesToPrint.Contains(currentPoint))
+                    {
+                        Console.Write(matrix[row, col] + " ");
+                    }
+                    else
+                    {
+                        Console.Write(0 + " ");
+                    }
                 }
 
                 Console.WriteLine();
