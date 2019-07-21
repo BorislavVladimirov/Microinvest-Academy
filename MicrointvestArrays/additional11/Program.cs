@@ -15,29 +15,41 @@ namespace additional11
 
         private static int GetDeterminant(int[,] matrix)
         {
-            int leftDiagonaleSum = 1;
-            int rightDiagonaleSum = 1;
-
-            for (int row = matrix.GetLength(0) - 1; row >= 0; row--)
+            if (matrix.Rank == 2)
             {
-                for (int col = 0; col < matrix.GetLength(0); col++)
-                {
-                    rightDiagonaleSum *= matrix[row, col];
-                    row--;
-                }
-            }
+                int leftDiagonaleSum = 1;
+                int rightDiagonaleSum = 1;
 
-            for (int row = 0; row < matrix.GetLength(0); row++)
+                for (int row = matrix.GetLength(0) - 1; row >= 0; row--)
+                {
+                    for (int col = 0; col < matrix.GetLength(0); col++)
+                    {
+                        rightDiagonaleSum *= matrix[row, col];
+                        row--;
+                    }
+                }
+
+                for (int row = 0; row < matrix.GetLength(0); row++)
+                {
+                    for (int col = 0; col < matrix.GetLength(0); col++)
+                    {
+                        leftDiagonaleSum *= matrix[row, col];
+                        row++;
+                    }
+                }
+
+                return leftDiagonaleSum - rightDiagonaleSum;
+            }
+            else
             {
-                for (int col = 0; col < matrix.GetLength(0); col++)
+                for (int row = 0; row < matrix.GetLength(0); row++)
                 {
-                    leftDiagonaleSum *= matrix[row, col];
-                    row++;
+
                 }
+
+                return 0;
             }
-
-            return leftDiagonaleSum - rightDiagonaleSum;
-
+            
         }
 
         private static void GenerateMatrix(int[,] matrix, int dimention)
