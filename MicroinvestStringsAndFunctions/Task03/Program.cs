@@ -17,11 +17,8 @@ namespace Task03
             string secondString = input[1].Trim();
 
             Console.OutputEncoding = Encoding.Unicode;
-
-            if (AreStringLengthsEqual(firstString, secondString))
-            {
-                Console.WriteLine(GetDifferenceByIndexes(firstString, secondString));
-            }
+            Console.WriteLine(AreStringLengthsEqual(firstString, secondString));
+            Console.WriteLine(GetDifferenceByIndexes(firstString, secondString));
 
         }
 
@@ -29,7 +26,13 @@ namespace Task03
         {
             StringBuilder stringBuilder = new StringBuilder();
 
-            for (int i = 0; i < firstString.Length; i++)
+            stringBuilder.AppendLine();
+            stringBuilder.AppendLine("Разлика по позиции:");
+            stringBuilder.AppendLine();
+
+            int shorterStringLength = Math.Min(firstString.Length, secondString.Length);
+
+            for (int i = 0; i < shorterStringLength; i++)
             {
                 if (firstString[i] != secondString[i])
                 {
@@ -40,16 +43,14 @@ namespace Task03
             return stringBuilder;
         }
 
-        private static bool AreStringLengthsEqual(string firstString, string secondString)
+        private static string AreStringLengthsEqual(string firstString, string secondString)
         {
             if (firstString.Length == secondString.Length)
             {
-                Console.WriteLine("Двата низа са с равна дължина.");
-                return true;
+                return "Двата низа са с равна дължина.";
             }
 
-            Console.WriteLine("Двата низа не са с равна дължина.");
-            return false;
+            return "Двата низа не са с равна дължина.";
         }
     }
 }
