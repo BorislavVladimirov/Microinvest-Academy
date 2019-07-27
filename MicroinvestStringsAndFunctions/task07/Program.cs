@@ -9,22 +9,30 @@ namespace task07
         public static void Main(string[] args)
         {
             string[] inputString = Console.ReadLine()
-                .Split(" ",StringSplitOptions.RemoveEmptyEntries)
+                .Split(" ", StringSplitOptions.RemoveEmptyEntries)
                 .ToArray();
 
-            Console.OutputEncoding = Encoding.Unicode;
-            int logestWordLength = int.MinValue;
+            int longestWordLength = int.MinValue;
 
+            GetLongestWord(ref longestWordLength, inputString);
+
+            Console.OutputEncoding = Encoding.Unicode;
+            Console.WriteLine($"{inputString.Length} думи, най-дългата е с {longestWordLength} символа.");
+        }
+
+        private static int GetLongestWord(ref int longestWordLength, string[] inputString)
+        {
             for (int i = 0; i < inputString.Length; i++)
             {
                 string currentWord = inputString[i];
 
-                if (currentWord.Length > logestWordLength)
+                if (currentWord.Length > longestWordLength)
                 {
-                    logestWordLength = currentWord.Length;
+                    longestWordLength = currentWord.Length;
                 }
             }
-            Console.WriteLine($"{inputString.Length} думи, най-дългата е с {logestWordLength} символа.");
+
+            return longestWordLength; 
         }
     }
 }

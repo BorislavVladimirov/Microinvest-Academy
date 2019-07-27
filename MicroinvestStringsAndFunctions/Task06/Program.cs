@@ -13,6 +13,14 @@ namespace Task06
                 .Split()
                 .ToArray();
 
+            EditString(inputString);
+
+            Console.OutputEncoding = Encoding.Unicode;
+            Console.WriteLine(string.Join(" ",inputString));
+        }
+
+        private static void EditString(string[] inputString)
+        {
             for (int i = 0; i < inputString.Length; i++)
             {
                 char[] currenWord = inputString[i].ToCharArray();
@@ -25,9 +33,6 @@ namespace Task06
 
                 inputString[i] = string.Join("", currenWord);
             }
-
-            Console.OutputEncoding = Encoding.Unicode;
-            Console.WriteLine(string.Join(" ",inputString));
         }
     }
 }

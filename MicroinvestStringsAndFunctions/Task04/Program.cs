@@ -14,6 +14,13 @@ namespace Task04
             int biggestASCIISum = int.MinValue;
             int indexOfName = -1;
 
+            GetNameWithHighesScore(names, biggestASCIISum,ref indexOfName);            
+
+            Console.WriteLine(names[indexOfName]);
+        }
+
+        private static void GetNameWithHighesScore(string[] names, int biggestASCIISum,ref int indexOfName)
+        {
             for (int i = 0; i < names.Length; i++)
             {
                 int currentCharsSum = 0;
@@ -30,8 +37,6 @@ namespace Task04
                     indexOfName = i;
                 }
             }
-
-            Console.WriteLine(names[indexOfName]);
         }
     }
 }
