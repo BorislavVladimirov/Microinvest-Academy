@@ -7,6 +7,9 @@ namespace Task05
     {
         public static void Main(string[] args)
         {
+            string a;
+
+            a = "adsasd";
             Console.InputEncoding = Encoding.Unicode;
             string firstString = Console.ReadLine();
             string secondString = Console.ReadLine();
