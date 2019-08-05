@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace CountingSort
 {
@@ -6,7 +7,7 @@ namespace CountingSort
     {
         public static void Main(string[] args)
         {
-            int[] arrayToSort = { 2, 6, 6, 10, 10, 3 };
+            int[] arrayToSort = { 2, 6, 6, 10, 10, 3 ,0, -2};
             int[] sorted = CountingSort(arrayToSort);
 
             Console.WriteLine(string.Join(" ", sorted));
@@ -14,31 +15,47 @@ namespace CountingSort
 
         private static int[] CountingSort(int[] array)
         {
-            int[] count = new int[11];
+            int maxLength = GetBiggestElement(array);
+
+            int[] countArray = new int[maxLength + 1];
 
             for (int i = 0; i < array.Length; i++)
             {
                 int value = array[i];
-                count[value]++;
-            }
-
-            for (int i = 1; i < count.Length; i++)
-            {
-                count[i] = count[i] + count[i - 1];
+                countArray[value]++;
             }
 
             int[] sorted = new int[array.Length];
+            int indexOfSortedArray = 0;
 
-            for (int i = array.Length - 1; i >= 0; i--)
+            for (int i = 0; i < countArray.Length; i++)
             {
-                int value = array[i];
-                int position = count[value] - 1;
-                sorted[position] = value;
-
-                count[value]--;
+                if (countArray[i] != 0)
+                {
+                    for (int j = 0; j < countArray[i]; j++)
+                    {
+                        sorted[indexOfSortedArray] = i;
+                        indexOfSortedArray++;
+                    }
+                }
             }
 
             return sorted;
+        }
+
+        private static int GetBiggestElement(int[] array)
+        {
+            int biggestElement = int.MinValue;
+
+            for (int i = 0; i < array.Length; i++)
+            {
+                if (array[i] > biggestElement)
+                {
+                    biggestElement = array[i];
+                }
+            }
+
+            return biggestElement;
         }
     }
 }
