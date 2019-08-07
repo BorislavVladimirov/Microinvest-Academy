@@ -12,9 +12,7 @@ namespace TestProject
             //Console.WriteLine(result);
             //Console.WriteLine(secondResult);
 
-
             int[,] matrix = new int[3, 3];
-
 
             for (int row = 0; row < matrix.GetLength(0); row++)
             {
@@ -52,6 +50,11 @@ namespace TestProject
 
             Console.WriteLine(firstDiagonalSum);
             Console.WriteLine(secondDiagonalSum);
+        }
+
+        private static int Increment(int i)
+        {
+            return i++;
         }
     }
 }

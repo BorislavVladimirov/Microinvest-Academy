@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 namespace Task04
 {
@@ -8,15 +9,11 @@ namespace Task04
         {
             int number = 0;
 
-            //THE TASK IS NOT FINISHED
             if (int.TryParse(Console.ReadLine(), out number))
             {
-                LengthCheck(number);
+                ValidateLength(number);
 
-                int[] resultArray = new int[GetLengthForResultArray(number)];
-
-                int maxLength = 0;
-                GeneratePermutations(resultArray, number, maxLength);
+                GeneratePermutations("", number.ToString());
             }
             else
             {
@@ -24,48 +21,32 @@ namespace Task04
             }
         }
 
-        private static int GetLengthForResultArray(int number)
+        private static void GeneratePermutations(string prefix, string number)
         {
-            int factorial = number;
+            int length = number.Length;
 
-            for (int i = number; i > 1; i--)
+            if (length == 0)
             {
-                factorial *= i - 1;
-            }
-
-            return factorial;
-        }
-
-        private static string GeneratePermutations(int[] resultArray, int number, int maxLength)
-        {
-            if (maxLength == number)
-            {
-                return string.Join(" ", resultArray);
-            }
-            else if (maxLength == number.ToString().Length - 1)
-            {
-                return string.Join(" ", resultArray);
+                PrintResultPermutations(prefix);
             }
             else
             {
-                int currentDigit = int.Parse(number.ToString()[maxLength].ToString());
+                for (int i = 0; i < length; i++)
+                {
+                    string currrentNumberAsString = number[i].ToString();
+                    string remainingNumbersAsString = number.Substring(0, i) + number.Substring(i + 1, length - (i + 1));
 
-                SwapElements(number, maxLength);
-
-
-                return GeneratePermutations(resultArray, number, maxLength + 1);
+                    GeneratePermutations(prefix + currrentNumberAsString, remainingNumbersAsString);
+                }
             }
         }
 
-        private static void SwapElements(int number, int index)
+        private static void PrintResultPermutations(string prefix)
         {
-            for (int i = index + 1; i < number.ToString().Length - 1; i++)
-            {
-
-            }
+            Console.Write(prefix + " ");
         }
 
-        private static void LengthCheck(int number)
+        private static void ValidateLength(int number)
         {
             string numberToString = number.ToString();
 
