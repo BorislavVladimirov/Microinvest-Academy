@@ -20,7 +20,7 @@ namespace Task01
 
         private static int GetSum(int number)
         {
-            if (number == 1)
+            if (number == 8888)
             {
                 return number;
             }
