@@ -11,51 +11,48 @@ namespace StackAndQueueTask01
         {
             Console.OutputEncoding = Encoding.Unicode;
 
-            Stack<int> stackNumbers = new Stack<int>();
-            Stack<int> resultStack = new Stack<int>();
-
-            GenerateStack(stackNumbers);
-
-            for (int i = 0; i < stackNumbers.Count; i++)
-            {
-                resultStack.Push(stackNumbers.Pop());
-
-                i--;
-            }
-
-            while (resultStack.Any())
-            {
-                Console.Write(resultStack.Pop() + " ");
-            }
-
-            Console.WriteLine(Environment.NewLine);
-
-
-
             Queue<int> queueNumbers = new Queue<int>();
 
             GenerateQueue(queueNumbers);
 
-            Queue<int> resultQueue = new Queue<int>();
-            int initialCount = queueNumbers.Count;
+            ReverseQueue(queueNumbers);
 
-            while (queueNumbers.Any())
+            Console.WriteLine("Нечетни числа:");
+
+            foreach (var number in queueNumbers)
             {
-                for (int i = 0; i < initialCount; i++)
+                if (number % 2 != 0)
                 {
-                    if (i == initialCount - 1)
-                    {
-                        Console.Write(queueNumbers.Dequeue() + " ");
-                    }
-                    else
-                    {
-                        resultQueue.Enqueue(queueNumbers.Dequeue());
-                    }
-
+                    Console.Write(number + " ");
                 }
+            }
 
-                queueNumbers = resultQueue;
-                initialCount--;
+
+
+            Console.WriteLine(Environment.NewLine);
+
+            Console.WriteLine("Въведете следващата поредица от числа");
+
+            Stack<int> stackNumbers = new Stack<int>();
+
+            GenerateStack(stackNumbers);
+
+            Console.WriteLine("Нечетни числа:");
+
+            foreach (var number in stackNumbers)
+            {
+                if (number % 2 != 0)
+                {
+                    Console.Write(number + " ");
+                }
+            }
+        }
+
+        private static void ReverseQueue(Queue<int> queueNumbers)
+        {
+            for (int i = 0; i < queueNumbers.Count; i++)
+            {
+                queueNumbers.Enqueue(queueNumbers.Dequeue());
             }
         }
 

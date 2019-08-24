@@ -11,51 +11,44 @@ namespace StackAndQueueTask01
         {
             Console.OutputEncoding = Encoding.Unicode;
 
-            Stack<int> stackNumbers = new Stack<int>();
-            Stack<int> resultStack = new Stack<int>();
-
-            GenerateStack(stackNumbers);
-
-            for (int i = 0; i < stackNumbers.Count; i++)
-            {
-                resultStack.Push(stackNumbers.Pop());
-
-                i--;
-            }
-
-            while (resultStack.Any())
-            {
-                Console.Write(resultStack.Pop() + " ");
-            }
-
-            Console.WriteLine(Environment.NewLine);
-
-
-
             Queue<int> queueNumbers = new Queue<int>();
 
             GenerateQueue(queueNumbers);
 
-            Queue<int> resultQueue = new Queue<int>();
-            int initialCount = queueNumbers.Count;
+            Console.WriteLine("Четни числа:");
 
-            while (queueNumbers.Any())
+            foreach (var number in queueNumbers)
             {
-                for (int i = 0; i < initialCount; i++)
+                if (number % 2 == 0)
                 {
-                    if (i == initialCount - 1)
-                    {
-                        Console.Write(queueNumbers.Dequeue() + " ");
-                    }
-                    else
-                    {
-                        resultQueue.Enqueue(queueNumbers.Dequeue());
-                    }
-
+                    Console.Write(number + " ");
                 }
+            }
 
-                queueNumbers = resultQueue;
-                initialCount--;
+
+
+            Console.WriteLine(Environment.NewLine);
+
+            Console.WriteLine("Въведете следващата поредица от числа");
+
+            Stack<int> stackNumbers = new Stack<int>();
+
+            GenerateStack(stackNumbers);
+
+            Console.WriteLine("Четни числа:");
+            Stack<int> resultStack = new Stack<int>();
+
+            foreach (var number in stackNumbers)
+            {
+                resultStack.Push(number);                
+            }
+
+            foreach (var number in resultStack)
+            {
+                if (number % 2 == 0)
+                {
+                    Console.Write(number + " ");
+                }
             }
         }
 
