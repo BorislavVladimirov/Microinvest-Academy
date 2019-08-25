@@ -1,23 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
-namespace ListsTask02
+namespace HashSets03
 {
     public class Program
     {
         static void Main(string[] args)
         {
-            List<int> numbers = new List<int>();
+            Console.OutputEncoding = Encoding.Unicode;
 
-            GenerateList(numbers);           
+            HashSet<int> hashNumbers = new HashSet<int>();
 
-            ReverseList(numbers);
+            GenerateHashSet(hashNumbers);
 
-            Console.WriteLine(string.Join(", ", numbers));
+            Console.WriteLine(string.Join(", ", hashNumbers.OrderByDescending(n => n)));
         }
 
-        private static void GenerateList(List<int> numbers)
+        private static void GenerateHashSet(HashSet<int> hashNumbers)
         {
             string command = Console.ReadLine();
 
@@ -27,9 +28,8 @@ namespace ListsTask02
 
                 if (int.TryParse(command, out number))
                 {
-                    numbers.Add(number);
+                    hashNumbers.Add(number);
 
-                    Console.OutputEncoding = Encoding.Unicode;
                     Console.WriteLine("За да спрете да въвеждате числа въведете \"End\"");
                 }
                 else
@@ -38,17 +38,6 @@ namespace ListsTask02
                 }
 
                 command = Console.ReadLine();
-            }
-        }
-
-        private static void ReverseList(List<int> numbers)
-        {
-            for (int i = 0; i < numbers.Count - 1; i++)
-            {
-                int tempElement = numbers[i];
-
-                numbers[i] = numbers[numbers.Count - 1 - i];
-                numbers[numbers.Count - 1 - i] = tempElement;
             }
         }
     }

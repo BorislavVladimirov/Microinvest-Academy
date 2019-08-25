@@ -15,6 +15,47 @@ namespace StackAndQueueTask01
 
             GenerateQueue(queueNumbers);
 
+            RemoveMiddleQueueElement(queueNumbers);
+
+
+
+            Console.WriteLine(Environment.NewLine);
+
+            Console.WriteLine("Въведете следващата поредица от числа");
+
+            Stack<int> stackNumbers = new Stack<int>();
+
+            GenerateStack(stackNumbers);
+
+            RemoveMiddleElementInStack(stackNumbers);
+        }
+
+        private static void RemoveMiddleElementInStack(Stack<int> stackNumbers)
+        {
+            Stack<int> resultStack = new Stack<int>();
+
+            int middleIndex = stackNumbers.Count / 2;
+            int initialCount = stackNumbers.Count();
+
+            for (int i = 0; i < initialCount; i++)
+            {
+                if (i == middleIndex)
+                {
+                    stackNumbers.Pop();
+                    continue;
+                }
+
+                resultStack.Push(stackNumbers.Pop());
+            }
+
+            foreach (var number in resultStack)
+            {
+                Console.Write(number + " ");
+            }
+        }
+
+        private static void RemoveMiddleQueueElement(Queue<int> queueNumbers)
+        {
             Queue<int> resultQueue = new Queue<int>();
 
             int middleIndex = queueNumbers.Count / 2;
@@ -32,38 +73,6 @@ namespace StackAndQueueTask01
             }
 
             foreach (var number in resultQueue)
-            {
-                Console.Write(number + " ");
-            }
-
-
-
-
-            Console.WriteLine(Environment.NewLine);
-
-            Console.WriteLine("Въведете следващата поредица от числа");
-
-            Stack<int> stackNumbers = new Stack<int>();
-
-            GenerateStack(stackNumbers);
-
-            Stack<int> resultStack = new Stack<int>();
-
-            middleIndex = stackNumbers.Count / 2;
-            initialCount = stackNumbers.Count();
-
-            for (int i = 0; i < initialCount; i++)
-            {
-                if (i == middleIndex)
-                {
-                    stackNumbers.Pop();
-                    continue;
-                }
-
-                resultStack.Push(stackNumbers.Pop());
-            }
-
-            foreach (var number in resultStack)
             {
                 Console.Write(number + " ");
             }

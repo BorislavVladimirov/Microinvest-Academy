@@ -19,30 +19,7 @@ namespace StackAndQueueTask01
 
             Console.WriteLine("Въведете начален и краен индекс");
 
-            int startIndex;
-            int endIndex;
-            
-            if (int.TryParse(Console.ReadLine(), out startIndex) && int.TryParse(Console.ReadLine(), out endIndex))
-            {
-                if (ValidateIndexes(startIndex, endIndex, queueNumbers))
-                {
-                    int index = 0;
-
-                    foreach (var number in queueNumbers)
-                    {
-                        if (index < startIndex || index > endIndex)
-                        {
-                            resultQueue.Enqueue(number);
-                        }
-
-                        index++;
-                    }
-                }
-            }
-            else
-            {
-                Console.WriteLine("Ivalid number");
-            }
+            RemoveQueueElementsBetweenIndexes(queueNumbers, resultQueue);
 
             PrintQueue(resultQueue);
 
@@ -59,6 +36,16 @@ namespace StackAndQueueTask01
             Stack<int> resultStack = new Stack<int>();
 
             Console.WriteLine("Въведете начален и краен индекс");
+
+            RemoveStackElementsBetweenIndexes(stackNumbers, resultStack);
+
+            PrintStack(resultStack);
+        }
+
+        private static void RemoveStackElementsBetweenIndexes(Stack<int> stackNumbers, Stack<int> resultStack)
+        {
+            int startIndex;
+            int endIndex;
 
             if (int.TryParse(Console.ReadLine(), out startIndex) && int.TryParse(Console.ReadLine(), out endIndex))
             {
@@ -81,15 +68,41 @@ namespace StackAndQueueTask01
             {
                 Console.WriteLine("Ivalid number");
             }
+        }
 
-            PrintStack(resultStack);
+        private static void RemoveQueueElementsBetweenIndexes(Queue<int> queueNumbers, Queue<int> resultQueue)
+        {
+            int startIndex;
+            int endIndex;
+
+            if (int.TryParse(Console.ReadLine(), out startIndex) && int.TryParse(Console.ReadLine(), out endIndex))
+            {
+                if (ValidateIndexes(startIndex, endIndex, queueNumbers))
+                {
+                    int index = 0;
+
+                    foreach (var number in queueNumbers)
+                    {
+                        if (index < startIndex || index > endIndex)
+                        {
+                            resultQueue.Enqueue(number);
+                        }
+
+                        index++;
+                    }
+                }
+            }
+            else
+            {
+                Console.WriteLine("Ivalid number");
+            }
         }
 
         private static void PrintStack(Stack<int> resultStack)
         {
             while (resultStack.Any())
             {
-                Console.WriteLine(resultStack.Pop() + " ");
+                Console.Write(resultStack.Pop() + " ");
             }
         }
 
@@ -109,7 +122,7 @@ namespace StackAndQueueTask01
         {
             while (resultQueue.Any())
             {
-                Console.WriteLine(resultQueue.Dequeue() + " ");
+                Console.Write(resultQueue.Dequeue() + " ");
             }
         }
 

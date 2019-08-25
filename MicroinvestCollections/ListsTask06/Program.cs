@@ -23,9 +23,14 @@ namespace ListsTask05
 
             resultNumbers.AddRange(firstNumbers);
             resultNumbers.AddRange(secondNumbers);
+            
+            OrderList(resultNumbers);           
 
-            //resultNumbers.Sort();
+            Console.WriteLine(string.Join(", ", resultNumbers));
+        }
 
+        private static void OrderList(List<int> resultNumbers)
+        {
             bool isSwaped = true;
 
             while (isSwaped == true)
@@ -45,10 +50,7 @@ namespace ListsTask05
                     }
                 }
             }
-
-            Console.WriteLine(string.Join(", ", resultNumbers));
         }
-
 
         private static void GenerateList(List<int> numbers)
         {

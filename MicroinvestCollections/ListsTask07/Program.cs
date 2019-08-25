@@ -17,6 +17,19 @@ namespace ListsTask05
 
             GenerateList(numbers);
 
+            FilterElements(numbers, oddNumbers, evenNumbers);            
+
+            Console.WriteLine("Нечетни числа:");
+            Console.WriteLine(string.Join(", ", oddNumbers));
+
+            Console.WriteLine(Environment.NewLine);
+
+            Console.WriteLine("Четни числа:");
+            Console.WriteLine(string.Join(", ", evenNumbers));
+        }
+
+        private static void FilterElements(List<int> numbers, List<int> oddNumbers, List<int> evenNumbers)
+        {
             for (int i = 0; i < numbers.Count; i++)
             {
                 if (numbers[i] % 2 == 0)
@@ -28,16 +41,7 @@ namespace ListsTask05
                     oddNumbers.Add(numbers[i]);
                 }
             }
-
-            Console.WriteLine("Нечетни числа:");
-            Console.WriteLine(string.Join(", ", oddNumbers));
-
-            Console.WriteLine(Environment.NewLine);
-
-            Console.WriteLine("Четни числа:");
-            Console.WriteLine(string.Join(", ", evenNumbers));
         }
-
 
         private static void GenerateList(List<int> numbers)
         {

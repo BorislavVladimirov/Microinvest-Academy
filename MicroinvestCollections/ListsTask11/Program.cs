@@ -17,13 +17,18 @@ namespace ListsTask05
 
             Console.WriteLine("Въведете търсеното число и заместващ елемент");
 
+            ReplaceElementsEqualToAGivenValue(numbers);
+           
+            Console.WriteLine(string.Join(", ", numbers));
+        }
+
+        private static void ReplaceElementsEqualToAGivenValue(List<int> numbers)
+        {
             int newNumber;
             int elementToCompare;
 
             if (int.TryParse(Console.ReadLine(), out elementToCompare) && int.TryParse(Console.ReadLine(), out newNumber))
             {
-                //numbers = numbers.Select(n => n == elementToCompare ? newNumber : n).ToList();
-
                 for (int i = 0; i < numbers.Count; i++)
                 {
                     if (numbers[i] == elementToCompare)
@@ -37,9 +42,7 @@ namespace ListsTask05
                 Console.WriteLine("Invalid number!");
             }
 
-            Console.WriteLine(string.Join(", ", numbers));
         }
-
 
         private static void GenerateList(List<int> numbers)
         {

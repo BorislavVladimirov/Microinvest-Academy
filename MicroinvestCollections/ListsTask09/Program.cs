@@ -16,6 +16,13 @@ namespace ListsTask05
 
             Console.WriteLine("Въведете индекс и елемент");
 
+            RemoveElementAtIndex(numbers);            
+
+            Console.WriteLine(string.Join(", ", numbers));
+        }
+
+        private static void RemoveElementAtIndex(List<int> numbers)
+        {
             int element;
             int index;
 
@@ -41,10 +48,7 @@ namespace ListsTask05
             {
                 Console.WriteLine("Ivalid number");
             }
-
-            Console.WriteLine(string.Join(", ", numbers));
         }
-
 
         private static void GenerateList(List<int> numbers)
         {

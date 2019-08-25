@@ -15,17 +15,9 @@ namespace StackAndQueueTask01
 
             GenerateQueue(queueNumbers);
 
-            ReverseQueue(queueNumbers);
-
             Console.WriteLine("Нечетни числа:");
 
-            foreach (var number in queueNumbers)
-            {
-                if (number % 2 != 0)
-                {
-                    Console.Write(number + " ");
-                }
-            }
+            PrintQueueNumbers(queueNumbers);
 
 
 
@@ -39,6 +31,11 @@ namespace StackAndQueueTask01
 
             Console.WriteLine("Нечетни числа:");
 
+            PrintStackNumbers(stackNumbers);          
+        }
+
+        private static void PrintStackNumbers(Stack<int> stackNumbers)
+        {
             foreach (var number in stackNumbers)
             {
                 if (number % 2 != 0)
@@ -48,12 +45,19 @@ namespace StackAndQueueTask01
             }
         }
 
-        private static void ReverseQueue(Queue<int> queueNumbers)
+        private static void PrintQueueNumbers(Queue<int> queueNumbers)
         {
-            for (int i = 0; i < queueNumbers.Count; i++)
+            Stack<int> resultQueue = new Stack<int>();
+
+            foreach (var number in queueNumbers)
             {
-                queueNumbers.Enqueue(queueNumbers.Dequeue());
+                if (number % 2 != 0)
+                {
+                    resultQueue.Push(number);
+                }
             }
+
+            Console.WriteLine(string.Join(" ", resultQueue));
         }
 
         private static void GenerateStack(Stack<int> stackNumbers)
@@ -103,3 +107,4 @@ namespace StackAndQueueTask01
         }
     }
 }
+    

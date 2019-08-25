@@ -8,9 +8,16 @@ namespace ListsTask01
     {
         static void Main(string[] args)
         {
-            string command = Console.ReadLine();
-
             List<int> numbers = new List<int>();
+
+            GenerateList(numbers);
+
+            Console.WriteLine(string.Join(", ", numbers));
+        }
+
+        private static void GenerateList(List<int> numbers)
+        {
+            string command = Console.ReadLine();
 
             while (command != "End")
             {
@@ -30,8 +37,6 @@ namespace ListsTask01
 
                 command = Console.ReadLine();
             }
-
-            Console.WriteLine(string.Join(", ", numbers));
         }
     }
 }

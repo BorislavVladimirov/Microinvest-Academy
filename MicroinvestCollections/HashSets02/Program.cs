@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 
-namespace ListsTask05
+namespace HashSets02
 {
     public class Program
     {
@@ -11,35 +10,36 @@ namespace ListsTask05
         {
             Console.OutputEncoding = Encoding.Unicode;
 
-            List<int> numbers = new List<int>();
+            HashSet<int> hashNumbers = new HashSet<int>();
 
-            GenerateList(numbers);
+            GenerateHashSet(hashNumbers);
 
-            PrintUniqueValues(numbers);            
+            Console.WriteLine("Въведете число за сравнение");
+
+            FindGreaterValues(hashNumbers);
         }
 
-        private static void PrintUniqueValues(List<int> numbers)
+        private static void FindGreaterValues(HashSet<int> hashNumbers)
         {
-            for (int i = 0; i < numbers.Count; i++)
-            {
-                int countOfOccurance = 0;
+            int elementToCompare;
 
-                for (int j = 0; j < numbers.Count; j++)
+            if (int.TryParse(Console.ReadLine(), out elementToCompare))
+            {
+                foreach (var number in hashNumbers)
                 {
-                    if (numbers[i] == numbers[j])
+                    if (number > elementToCompare)
                     {
-                        countOfOccurance++;
+                        Console.Write(number + " ");
                     }
                 }
-
-                if (countOfOccurance == 1)
-                {
-                    Console.WriteLine(numbers[i]);
-                }
+            }
+            else
+            {
+                Console.WriteLine("Invalid number!");
             }
         }
 
-        private static void GenerateList(List<int> numbers)
+        private static void GenerateHashSet(HashSet<int> hashNumbers)
         {
             string command = Console.ReadLine();
 
@@ -49,7 +49,7 @@ namespace ListsTask05
 
                 if (int.TryParse(command, out number))
                 {
-                    numbers.Add(number);
+                    hashNumbers.Add(number);
 
                     Console.WriteLine("За да спрете да въвеждате числа въведете \"End\"");
                 }
@@ -63,5 +63,3 @@ namespace ListsTask05
         }
     }
 }
-
-

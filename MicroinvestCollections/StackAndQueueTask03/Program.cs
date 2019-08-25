@@ -17,17 +17,7 @@ namespace StackAndQueueTask01
 
             Console.WriteLine("Недублиращи се числа:");
 
-            for (int i = 0; i < queueNumbers.Count; i++)
-            {
-                int currentNumber = queueNumbers.Dequeue();
-
-                if (!queueNumbers.Contains(currentNumber))
-                {
-                    Console.Write(currentNumber + " ");
-                }
-
-                queueNumbers.Enqueue(currentNumber);
-            }
+            PrintUniqueQueueValues(queueNumbers);          
 
 
 
@@ -41,6 +31,11 @@ namespace StackAndQueueTask01
 
             Console.WriteLine("Недублиращи се числа:");
 
+            PrintUnqueStackValues(stackNumbers);       
+        }
+
+        private static void PrintUnqueStackValues(Stack<int> stackNumbers)
+        {
             Stack<int> removedNumbers = new Stack<int>();
 
             while (stackNumbers.Any())
@@ -54,7 +49,21 @@ namespace StackAndQueueTask01
 
                 removedNumbers.Push(currentNumber);
             }
+        }
 
+        private static void PrintUniqueQueueValues(Queue<int> queueNumbers)
+        {
+            for (int i = 0; i < queueNumbers.Count; i++)
+            {
+                int currentNumber = queueNumbers.Dequeue();
+
+                if (!queueNumbers.Contains(currentNumber))
+                {
+                    Console.Write(currentNumber + " ");
+                }
+
+                queueNumbers.Enqueue(currentNumber);
+            }
         }
 
         private static void GenerateStack(Stack<int> stackNumbers)

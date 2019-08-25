@@ -12,21 +12,10 @@ namespace StackAndQueueTask01
             Console.OutputEncoding = Encoding.Unicode;
 
             Stack<int> stackNumbers = new Stack<int>();
-            Stack<int> resultStack = new Stack<int>();
 
             GenerateStack(stackNumbers);
 
-            for (int i = 0; i < stackNumbers.Count; i++)
-            {
-                resultStack.Push(stackNumbers.Pop());
-
-                i--;
-            }
-
-            while (resultStack.Any())
-            {
-                Console.Write(resultStack.Pop() + " ");
-            }
+            PrintStackInReversedOrder(stackNumbers);            
 
             Console.WriteLine(Environment.NewLine);
 
@@ -36,7 +25,13 @@ namespace StackAndQueueTask01
 
             GenerateQueue(queueNumbers);
 
+            PrintQueueInReverseOrder(queueNumbers);            
+        }
+
+        private static void PrintQueueInReverseOrder(Queue<int> queueNumbers)
+        {
             Queue<int> resultQueue = new Queue<int>();
+
             int initialCount = queueNumbers.Count;
 
             while (queueNumbers.Any())
@@ -56,6 +51,23 @@ namespace StackAndQueueTask01
 
                 queueNumbers = resultQueue;
                 initialCount--;
+            }
+        }
+
+        private static void PrintStackInReversedOrder(Stack<int> stackNumbers)
+        {
+            Stack<int> resultStack = new Stack<int>();
+
+            for (int i = 0; i < stackNumbers.Count; i++)
+            {
+                resultStack.Push(stackNumbers.Pop());
+
+                i--;
+            }
+
+            while (resultStack.Any())
+            {
+                Console.Write(resultStack.Pop() + " ");
             }
         }
 
