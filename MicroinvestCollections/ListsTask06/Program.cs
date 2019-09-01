@@ -13,23 +13,25 @@ namespace ListsTask05
             List<int> firstNumbers = new List<int>();
             List<int> secondNumbers = new List<int>();
 
-            List<int> resultNumbers = new List<int>();
-
             GenerateList(firstNumbers);
 
             Console.WriteLine("Въведете следващите числа");
 
             GenerateList(secondNumbers);
 
-            resultNumbers.AddRange(firstNumbers);
-            resultNumbers.AddRange(secondNumbers);
+            firstNumbers.AddRange(secondNumbers);
             
-            OrderList(resultNumbers);           
+            OrderList(firstNumbers);
 
-            Console.WriteLine(string.Join(", ", resultNumbers));
+            PrintList(firstNumbers);
         }
 
-        private static void OrderList(List<int> resultNumbers)
+        private static void PrintList(List<int> firstNumbers)
+        {
+            Console.WriteLine(string.Join(", ", firstNumbers));
+        }
+
+        private static void OrderList(List<int> firstNumbers)
         {
             bool isSwaped = true;
 
@@ -37,14 +39,14 @@ namespace ListsTask05
             {
                 isSwaped = false;
 
-                for (int i = 0; i < resultNumbers.Count - 1; i++)
+                for (int i = 0; i < firstNumbers.Count - 1; i++)
                 {
-                    if (resultNumbers[i] > resultNumbers[i + 1])
+                    if (firstNumbers[i] > firstNumbers[i + 1])
                     {
-                        int tempElement = resultNumbers[i];
+                        int tempElement = firstNumbers[i];
 
-                        resultNumbers[i] = resultNumbers[i + 1];
-                        resultNumbers[i + 1] = tempElement;
+                        firstNumbers[i] = firstNumbers[i + 1];
+                        firstNumbers[i + 1] = tempElement;
 
                         isSwaped = true;
                     }

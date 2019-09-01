@@ -18,6 +18,11 @@ namespace Dictionaries01
 
             char charToCompare = char.Parse(Console.ReadLine());
 
+            PrintPhoneBook(phoneBook, charToCompare);            
+        }
+
+        private static void PrintPhoneBook(Dictionary<string, int> phoneBook, char charToCompare)
+        {
             foreach (var kvp in phoneBook)
             {
                 if (kvp.Key.Contains(charToCompare))

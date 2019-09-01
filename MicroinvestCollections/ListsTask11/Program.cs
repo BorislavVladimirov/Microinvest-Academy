@@ -18,8 +18,13 @@ namespace ListsTask05
             Console.WriteLine("Въведете търсеното число и заместващ елемент");
 
             ReplaceElementsEqualToAGivenValue(numbers);
-           
-            Console.WriteLine(string.Join(", ", numbers));
+
+            PrintNumbers(numbers);
+        }
+
+        private static void PrintNumbers(List<int> numbers)
+        {
+            Console.WriteLine(string.Join(", ", numbers));            
         }
 
         private static void ReplaceElementsEqualToAGivenValue(List<int> numbers)

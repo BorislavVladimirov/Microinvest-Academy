@@ -26,7 +26,12 @@ namespace Dictionaries01
             {
                 Console.WriteLine($"Phonebook does not contain person with name {nameToBeRemoved}");
             }
-            
+
+            PrintPhoneBook(phoneBook);
+        }
+
+        private static void PrintPhoneBook(Dictionary<string, int> phoneBook)
+        {
             foreach (var kvp in phoneBook)
             {
                 Console.WriteLine($"Име: {kvp.Key}, телефонен номер: {kvp.Value}");

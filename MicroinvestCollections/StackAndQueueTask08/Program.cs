@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 
 namespace StackAndQueueTask01
@@ -47,17 +46,46 @@ namespace StackAndQueueTask01
 
         private static void PrintQueueNumbers(Queue<int> queueNumbers)
         {
-            Stack<int> resultQueue = new Stack<int>();
+            Queue<int> resultQueue = new Queue<int>();
 
             foreach (var number in queueNumbers)
             {
                 if (number % 2 != 0)
                 {
-                    resultQueue.Push(number);
+                    resultQueue.Enqueue(number);
                 }
             }
 
+            resultQueue = ReverseResultQueue(resultQueue);
+
             Console.WriteLine(string.Join(" ", resultQueue));
+        }
+
+        private static Queue<int> ReverseResultQueue(Queue<int> resultQueue)
+        {
+            Queue<int> tempQueue = new Queue<int>();
+            Queue<int> reversedQueue = new Queue<int>();
+
+            int initialCount = resultQueue.Count;
+
+            while (resultQueue.Count > 0)
+            {
+                for (int i = 0; i < initialCount; i++)
+                {
+                    if (i == initialCount - 1)
+                    {
+                        reversedQueue.Enqueue(resultQueue.Dequeue());
+                        continue;
+                    }
+
+                    tempQueue.Enqueue(resultQueue.Dequeue());
+                }
+
+                resultQueue = tempQueue;
+                initialCount--;
+            }
+
+            return reversedQueue;
         }
 
         private static void GenerateStack(Stack<int> stackNumbers)

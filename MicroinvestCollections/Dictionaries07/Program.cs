@@ -14,6 +14,13 @@ namespace Dictionaries01
 
             GeneratePhoneBook(phoneBook);
 
+            RemovePeopleWithoutPhoneNumber(phoneBook);            
+
+            PrintPhoneBook(phoneBook);            
+        }
+
+        private static void RemovePeopleWithoutPhoneNumber(Dictionary<string, List<int>> phoneBook)
+        {
             List<string> peopleToRemove = new List<string>();
 
             foreach (var kvp in phoneBook)
@@ -28,7 +35,10 @@ namespace Dictionaries01
             {
                 phoneBook.Remove(peopleToRemove[i]);
             }
+        }
 
+        private static void PrintPhoneBook(Dictionary<string, List<int>> phoneBook)
+        {
             foreach (var kvp in phoneBook)
             {
                 Console.WriteLine($"Име: {kvp.Key}, телефонен номер: {string.Join(", ", kvp.Value)}");

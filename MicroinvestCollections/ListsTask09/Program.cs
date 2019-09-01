@@ -16,8 +16,13 @@ namespace ListsTask05
 
             Console.WriteLine("Въведете индекс и елемент");
 
-            RemoveElementAtIndex(numbers);            
+            RemoveElementAtIndex(numbers);
 
+            PrintNumbers(numbers);
+        }
+
+        private static void PrintNumbers(List<int> numbers)
+        {
             Console.WriteLine(string.Join(", ", numbers));
         }
 
@@ -31,18 +36,16 @@ namespace ListsTask05
                 if (index < 0 || index > numbers.Count - 1)
                 {
                     Console.WriteLine("Invalid index!");
+                    return;
                 }
-                else
+
+                if (numbers[index] != element)
                 {
-                    if (numbers[index] == element)
-                    {
-                        numbers.RemoveAt(index);
-                    }
-                    else
-                    {
-                        Console.WriteLine("Число на дадения индекс на е равно на подаденото число");
-                    }
+                    Console.WriteLine("Число на дадения индекс на е равно на подаденото число");
+                    return;
                 }
+
+                numbers.RemoveAt(index);
             }
             else
             {

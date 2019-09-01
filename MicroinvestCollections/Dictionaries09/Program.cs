@@ -14,30 +14,29 @@ namespace Dictionaries01
 
             GeneratePhoneBook(phoneBook);
 
-            Console.WriteLine("Въведете желания номер");
-
-            FindPersonWithByNumber(phoneBook);          
+            FindPersonByNumber(phoneBook);
         }
 
-        private static void FindPersonWithByNumber(Dictionary<string, int> phoneBook)
+        private static void FindPersonByNumber(Dictionary<string, int> phoneBook)
         {
             int phoneNumberToCompare;
 
+            Console.WriteLine("Въведете желания номер");
+
             if (int.TryParse(Console.ReadLine(), out phoneNumberToCompare))
             {
-                if (phoneBook.ContainsValue(phoneNumberToCompare))
-                {
-                    foreach (var person in phoneBook)
-                    {
-                        if (person.Value == phoneNumberToCompare)
-                        {
-                            Console.WriteLine($"Име: {person.Key}, телефонен номер: {string.Join(", ", person.Value)}");
-                        }
-                    }
-                }
-                else
+                if (!phoneBook.ContainsValue(phoneNumberToCompare))
                 {
                     Console.WriteLine($"Phone number \"{phoneNumberToCompare}\" does not exist in the phone book");
+                    return;
+                }
+
+                foreach (var person in phoneBook)
+                {
+                    if (person.Value == phoneNumberToCompare)
+                    {
+                        Console.WriteLine($"Име: {person.Key}, телефонен номер: {string.Join(", ", person.Value)}");
+                    }
                 }
             }
             else

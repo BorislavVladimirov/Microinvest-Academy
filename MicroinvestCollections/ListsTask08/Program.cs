@@ -16,9 +16,14 @@ namespace ListsTask05
 
             Console.WriteLine("Въведете индекс и елемент");
 
-            AddElementAtIndex(numbers);            
+            AddElementAtIndex(numbers);
 
-            Console.WriteLine(string.Join(", ",numbers));
+            PrintNumbers(numbers);
+        }
+
+        private static void PrintNumbers(List<int> numbers)
+        {
+            Console.WriteLine(string.Join(", ", numbers));
         }
 
         private static void AddElementAtIndex(List<int> numbers)
@@ -31,11 +36,10 @@ namespace ListsTask05
                 if (index < 0 || index > numbers.Count - 1)
                 {
                     Console.WriteLine("Invalid index!");
+                    return;
                 }
-                else
-                {
-                    numbers.Insert(index, element);
-                }
+
+                numbers.Insert(index, element);
             }
             else
             {

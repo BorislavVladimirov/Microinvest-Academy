@@ -20,12 +20,17 @@ namespace ListsTask05
             FilterElements(numbers, oddNumbers, evenNumbers);            
 
             Console.WriteLine("Нечетни числа:");
-            Console.WriteLine(string.Join(", ", oddNumbers));
+            PrintNumbers(oddNumbers);
 
             Console.WriteLine(Environment.NewLine);
 
             Console.WriteLine("Четни числа:");
-            Console.WriteLine(string.Join(", ", evenNumbers));
+            PrintNumbers(evenNumbers);
+        }
+
+        private static void PrintNumbers(List<int> numbers)
+        {
+            Console.WriteLine(string.Join(", ", numbers));
         }
 
         private static void FilterElements(List<int> numbers, List<int> oddNumbers, List<int> evenNumbers)
@@ -35,11 +40,10 @@ namespace ListsTask05
                 if (numbers[i] % 2 == 0)
                 {
                     evenNumbers.Add(numbers[i]);
+                    continue;
                 }
-                else
-                {
-                    oddNumbers.Add(numbers[i]);
-                }
+
+                oddNumbers.Add(numbers[i]);
             }
         }
 

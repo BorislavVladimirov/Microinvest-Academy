@@ -17,7 +17,7 @@ namespace StackAndQueueTask01
 
             RemoveQeueuElementsAfterIndex(queueNumbers);
 
-            
+
 
 
             Console.WriteLine(Environment.NewLine);
@@ -28,7 +28,7 @@ namespace StackAndQueueTask01
 
             GenerateStack(stackNumbers);
 
-            RemoveStackElementsAfterIndex(stackNumbers);            
+            RemoveStackElementsAfterIndex(stackNumbers);
         }
 
         private static void RemoveStackElementsAfterIndex(Stack<int> stackNumbers)
@@ -43,18 +43,12 @@ namespace StackAndQueueTask01
 
             if (int.TryParse(Console.ReadLine(), out index))
             {
-            }
-            else
-            {
-                Console.WriteLine("Ivalid number");
-            }
+                if (index < 0 || index > initialCount - 1)
+                {
+                    Console.WriteLine("Invalid index!");
+                    return;
+                }
 
-            if (index < 0 || index > initialCount - 1)
-            {
-                Console.WriteLine("Invalid index!");
-            }
-            else
-            {
                 for (int i = 0; i < initialCount; i++)
                 {
                     if (i == index)
@@ -66,7 +60,16 @@ namespace StackAndQueueTask01
                     resultStack.Push(stackNumbers.Pop());
                 }
             }
+            else
+            {
+                Console.WriteLine("Ivalid number");
+            }
 
+            PrintStackNumbers(resultStack);
+        }
+
+        private static void PrintStackNumbers(Stack<int> resultStack)
+        {
             foreach (var number in resultStack)
             {
                 Console.Write(number + " ");
@@ -85,18 +88,12 @@ namespace StackAndQueueTask01
 
             if (int.TryParse(Console.ReadLine(), out index))
             {
-            }
-            else
-            {
-                Console.WriteLine("Ivalid number");
-            }
+                if (index < 0 || index > initialCount - 1)
+                {
+                    Console.WriteLine("Invalid index!");
+                    return;
+                }
 
-            if (index < 0 || index > initialCount - 1)
-            {
-                Console.WriteLine("Invalid index!");
-            }
-            else
-            {
                 for (int i = 0; i < initialCount; i++)
                 {
                     if (i == index)
@@ -108,7 +105,16 @@ namespace StackAndQueueTask01
                     resultQueue.Enqueue(queueNumbers.Dequeue());
                 }
             }
+            else
+            {
+                Console.WriteLine("Ivalid number");
+            }
 
+            PrintQueueNumbers(resultQueue);
+        }
+
+        private static void PrintQueueNumbers(Queue<int> resultQueue)
+        {
             foreach (var number in resultQueue)
             {
                 Console.Write(number + " ");

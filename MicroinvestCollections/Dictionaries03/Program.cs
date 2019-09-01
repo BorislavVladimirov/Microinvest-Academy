@@ -13,7 +13,12 @@ namespace Dictionaries01
             Dictionary<string, List<int>> phoneBook = new Dictionary<string, List<int>>();
 
             GeneratePhoneBook(phoneBook);           
+           
+            PrintPhoneBook(phoneBook);
+        }
 
+        private static void PrintPhoneBook(Dictionary<string, List<int>> phoneBook)
+        {
             foreach (var kvp in phoneBook)
             {
                 Console.WriteLine($"Име: {kvp.Key}, телефонни номера: {string.Join(", ", kvp.Value)}");

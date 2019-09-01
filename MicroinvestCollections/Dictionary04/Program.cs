@@ -12,16 +12,21 @@ namespace Dictionaries01
 
             Dictionary<string, List<int>> phoneBook = new Dictionary<string, List<int>>();
 
-            GeneratePhoneBook(phoneBook);            
+            GeneratePhoneBook(phoneBook);
 
             Console.WriteLine("Въведете номер, който желаете да изтриете");
 
             RemovePhoneNumber(phoneBook);
 
+            PrintPhoneBook(phoneBook);
+        }
+
+        private static void PrintPhoneBook(Dictionary<string, List<int>> phoneBook)
+        {
             foreach (var kvp in phoneBook)
             {
                 Console.WriteLine($"Име: {kvp.Key}, телефонни номера: {string.Join(", ", kvp.Value)}");
-            }            
+            }
         }
 
         private static void RemovePhoneNumber(Dictionary<string, List<int>> phoneBook)
@@ -30,25 +35,19 @@ namespace Dictionaries01
 
             if (int.TryParse(Console.ReadLine(), out phoneToBeRemoved))
             {
-                string name = string.Empty;
-                int phoneNumber = 0;
+                bool isPhoneDeleted = false;
 
                 foreach (var kvp in phoneBook)
                 {
-                    foreach (var number in kvp.Value)
+                    if (kvp.Value.Contains(phoneToBeRemoved))
                     {
-                        if (number == phoneToBeRemoved)
-                        {
-                            name = kvp.Key;
-                            phoneNumber = number;
-                        }
+                        phoneBook[kvp.Key].Remove(phoneToBeRemoved);
+
+                        isPhoneDeleted = true;
                     }
                 }
-                if (!string.IsNullOrEmpty(name))
-                {
-                    phoneBook[name].Remove(phoneNumber);
-                }
-                else
+
+                if (isPhoneDeleted == false)
                 {
                     Console.WriteLine($"Phone book does not contain user with number {phoneToBeRemoved}");
                     Console.WriteLine(Environment.NewLine);

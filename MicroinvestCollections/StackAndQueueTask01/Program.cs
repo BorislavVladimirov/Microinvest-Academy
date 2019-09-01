@@ -20,18 +20,47 @@ namespace StackAndQueueTask01
 
             GenerateStack(stackNumbers);
 
-            queueNumbers = new Queue<int>(queueNumbers.Reverse());
+            PrintQueue(queueNumbers);
 
-            while (queueNumbers.Any())
-            {
-                Console.Write(queueNumbers.Dequeue() + " ");
-            }
+            PrintStack(stackNumbers);
+        }
+
+        private static void PrintStack(Stack<int> stackNumbers)
+        {
+            Console.WriteLine("Stack numbers:");
 
             while (stackNumbers.Any())
             {
                 Console.Write(stackNumbers.Pop() + " ");
             }
+        }
 
+        private static void PrintQueue(Queue<int> queueNumbers)
+        {
+            Console.WriteLine("Queue numbers:");
+
+            int initialCount = queueNumbers.Count;
+
+            Queue<int> tempQueue = new Queue<int>();
+
+            while (queueNumbers.Any())
+            {
+                for (int i = 0; i < initialCount; i++)
+                {
+                    if (i == initialCount - 1)
+                    {
+                        Console.Write(queueNumbers.Dequeue() + " ");
+                        break;
+                    }
+
+                    tempQueue.Enqueue(queueNumbers.Dequeue());
+                }
+
+                initialCount--;
+                queueNumbers = tempQueue;
+            }
+
+            Console.WriteLine(Environment.NewLine);
         }
 
         private static void GenerateStack(Stack<int> stackNumbers)

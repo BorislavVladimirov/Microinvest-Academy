@@ -12,6 +12,11 @@ namespace ListsTask01
 
             GenerateList(numbers);
 
+            PrintList(numbers);
+        }
+
+        private static void PrintList(List<int> numbers)
+        {
             Console.WriteLine(string.Join(", ", numbers));
         }
 

@@ -15,6 +15,11 @@ namespace Dictionaries01
 
             GeneratePhoneBook(phoneBook);
 
+            PrintPhoneBook(phoneBook);            
+        }
+
+        private static void PrintPhoneBook(Dictionary<string, int> phoneBook)
+        {
             foreach (var person in phoneBook.OrderBy(p => p.Key))
             {
                 Console.WriteLine($"Име: {person.Key}, телефонен номер: {string.Join(", ", person.Value)}");

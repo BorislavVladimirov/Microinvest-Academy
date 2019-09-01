@@ -41,12 +41,10 @@ namespace StackAndQueueTask01
                     if (i == initialCount - 1)
                     {
                         Console.Write(queueNumbers.Dequeue() + " ");
-                    }
-                    else
-                    {
-                        resultQueue.Enqueue(queueNumbers.Dequeue());
+                        continue;
                     }
 
+                    resultQueue.Enqueue(queueNumbers.Dequeue());
                 }
 
                 queueNumbers = resultQueue;

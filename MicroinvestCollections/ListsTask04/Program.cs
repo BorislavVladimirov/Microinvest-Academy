@@ -18,6 +18,11 @@ namespace ListsTask04
 
             GetSumBetweenTwoElements(ref sum, numbers);
 
+            PrintSum(ref sum);
+        }
+
+        private static void PrintSum(ref int sum)
+        {
             Console.WriteLine($"Total sum of number after given element : {sum}");
         }
 

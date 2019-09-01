@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace ListsTask02
@@ -10,10 +11,15 @@ namespace ListsTask02
         {
             List<int> numbers = new List<int>();
 
-            GenerateList(numbers);           
+            GenerateList(numbers);
 
             ReverseList(numbers);
 
+            PrintList(numbers);
+        }
+
+        private static void PrintList(List<int> numbers)
+        {
             Console.WriteLine(string.Join(", ", numbers));
         }
 
