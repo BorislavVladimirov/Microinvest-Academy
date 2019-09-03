@@ -49,7 +49,7 @@ namespace ListsTask02
 
         private static void ReverseList(List<int> numbers)
         {
-            for (int i = 0; i < numbers.Count - 1; i++)
+            for (int i = 0; i < numbers.Count / 2; i++)
             {
                 int tempElement = numbers[i];
 
