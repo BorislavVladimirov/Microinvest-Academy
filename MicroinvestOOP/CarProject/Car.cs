@@ -121,21 +121,24 @@ namespace CarProject
             this.owner.Cars.Add(this);
         }
 
-        public string GetLastThreeOwners()
+        public string GetLastThreeDrivers()
         {
             StringBuilder sb = new StringBuilder();
 
             sb.AppendLine("Last three drivers:");
 
-            for (int i = 0; i < 3; i++)
+            int countOfCars = 0;
+
+            for (int i = this.drivers.Count - 1; i >= 0; i--)
             {
-                if (i <= this.drivers.Count - 1)
+                if (countOfCars == 3)
                 {
-                    sb.AppendLine(this.drivers[i].Name);
-                    continue;
+                    break;
                 }
 
-                break;
+                sb.AppendLine(this.drivers[i].Name);
+
+                countOfCars++;
             }
 
             return sb.ToString().TrimEnd();

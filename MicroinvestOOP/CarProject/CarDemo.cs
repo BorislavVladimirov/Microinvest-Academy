@@ -61,8 +61,8 @@ namespace CarProject
             BMW.ChangeCarOwner(BMWOwner);
             Audi.ChangeCarOwner(BMWOwner);
 
-            Console.WriteLine(BMW.GetLastThreeOwners());
-            Console.WriteLine(Audi.GetLastThreeOwners());
+            Console.WriteLine(BMW.GetLastThreeDrivers());
+            Console.WriteLine(Audi.GetLastThreeDrivers());
 
             Console.WriteLine("Въведете пореден номена на колата, на която искате да промените параметрите");
 

@@ -18,10 +18,10 @@ namespace CarProject
 
         public Person(string name, int age)
         {
-            this.Name = name;
-            this.Age = age;
-            this.frineds = new List<Person>();
-            this.carCollection = new List<Car>();
+            Name = name;
+            Age = age;
+            frineds = new List<Person>();
+            carCollection = new List<Car>();
         }
 
         #region Property
