@@ -12,10 +12,11 @@ namespace CarProject
         private string color;
         private int currentGear;
         private Person owner;
+        private List<Person> drivers;
 
         public Car()
         {
-
+            this.drivers = new List<Person>();
         }
 
         public Car(string model, int maxSpeed)
@@ -28,8 +29,6 @@ namespace CarProject
         public Car(string model, int maxSpeed, int currentSpeed, string color, int currentGear, Person owner)
             : this(model, maxSpeed)
         {
-            Model = model;
-            MaxSpeed = maxSpeed;
             CurrentSpeed = currentSpeed;
             Color = color;
             CurrentGear = currentGear;
@@ -93,6 +92,8 @@ namespace CarProject
             }
         }
 
+        public List<Person> Drivers => this.drivers;
+
         public Person Owner
         {
             get => this.owner;
@@ -103,6 +104,42 @@ namespace CarProject
             }
         }
 
+        #endregion
+
+        #region Method
+        public void Drive(Person driver)
+        {
+            this.drivers.Add(driver);
+        }
+
+        public void ChangeCarOwner(Person newOwner)
+        {
+            this.owner.Cars.Remove(this);
+
+            this.owner = newOwner;
+
+            this.owner.Cars.Add(this);
+        }
+
+        public string GetLastThreeOwners()
+        {
+            StringBuilder sb = new StringBuilder();
+
+            sb.AppendLine("Last three drivers:");
+
+            for (int i = 0; i < 3; i++)
+            {
+                if (i <= this.drivers.Count - 1)
+                {
+                    sb.AppendLine(this.drivers[i].Name);
+                    continue;
+                }
+
+                break;
+            }
+
+            return sb.ToString().TrimEnd();
+        }
         #endregion
     }
 }

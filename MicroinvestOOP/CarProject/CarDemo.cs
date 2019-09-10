@@ -10,19 +10,68 @@ namespace CarProject
         {
             Console.OutputEncoding = Encoding.Unicode;
 
-            Person BMWOwner = new Person("Strahil", 24);
-            Person AudiOwner = new Person("Kolio", 26);
+            Person BMWOwner = new Person("2Pac", 25);
+            Person AudiOwner = new Person("Eminem", 26);
 
             Car BMW = new Car("M5", 300, 220, "Blue", 6, BMWOwner);
+
+            BMWOwner.Cars.Add(BMW);
+
             Car Audi = new Car("A8", 300, 200, "Black", 8, AudiOwner);
+
+            AudiOwner.Cars.Add(Audi);
+
+            Console.WriteLine(BMWOwner.Drink());
+            Console.WriteLine(BMWOwner.Eat());
+
+            BMWOwner.GetOld();
+            Console.WriteLine($"Distance walked: {BMWOwner.Walk():f2} meters");
+
+            //Testing if returned values by Walk method are in range 
+
+            //int count = 1;
+
+            //while (count < 1000000)
+            //{
+            //    Console.WriteLine($"Distance walked: {BMWOwner.Walk():f2} meters");
+            //    Console.WriteLine($"Distance walked: {AudiOwner.Walk():f2}");
+
+            //    count++;
+            //}
+
+            Console.WriteLine(AudiOwner.Drink());
+            Console.WriteLine(AudiOwner.Eat());
+
+            AudiOwner.GetOld();
+            Console.WriteLine($"Distance walked: {AudiOwner.Walk():f2}");
+
+
+            AudiOwner.AddFriend(BMWOwner);
+            BMWOwner.AddFriend(AudiOwner);
+
+            BMW.Drive(BMWOwner);
+            BMW.Drive(AudiOwner);
+            BMW.Drive(BMWOwner);
+            BMW.Drive(BMWOwner);
+
+            Audi.Drive(AudiOwner);
+            Audi.Drive(AudiOwner);
+
+            BMW.ChangeCarOwner(AudiOwner);
+            BMW.ChangeCarOwner(BMWOwner);
+            Audi.ChangeCarOwner(BMWOwner);
+
+            Console.WriteLine(BMW.GetLastThreeOwners());
+            Console.WriteLine(Audi.GetLastThreeOwners());
 
             Console.WriteLine("Въведете пореден номена на колата, на която искате да промените параметрите");
 
             ChangeCarsProperties(BMW, Audi);
 
-            Console.WriteLine(PrintBMWInfo(BMW));     
+            Console.WriteLine(PrintBMWInfo(BMW));
         }
 
+        #region Method
         private static string PrintBMWInfo(Car BMW)
         {
             StringBuilder sb = new StringBuilder();
@@ -90,5 +139,7 @@ namespace CarProject
         {
             car.CurrentGear = newGear;
         }
+
+        #endregion
     }
 }
