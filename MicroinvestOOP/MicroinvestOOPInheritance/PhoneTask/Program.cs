@@ -9,7 +9,7 @@ namespace PhoneTask
         static void Main(string[] args)
         {
             Console.OutputEncoding = Encoding.Unicode;
-
+            
             try
             {
                 GSM huawei = new GSM("Mate20Pro");

@@ -26,6 +26,9 @@ namespace CarProject
 
             BMWOwner.GetOld();
             Console.WriteLine($"Distance walked: {BMWOwner.Walk():f2} meters");
+            Console.WriteLine($"Distance walked: {BMWOwner.Walk():f2} meters");
+            Console.WriteLine($"Distance walked: {BMWOwner.Walk():f2} meters");
+            Console.WriteLine($"Distance walked: {BMWOwner.Walk():f2} meters");
 
             //Testing if returned values by Walk method are in range 
 

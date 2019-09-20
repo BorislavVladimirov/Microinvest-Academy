@@ -1,6 +1,7 @@
 ﻿using GeoCoordinatePortable;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Text;
 
 namespace CarProject
@@ -8,6 +9,10 @@ namespace CarProject
     public class Person
     {
         private const double RangeModifier = 0.317959;
+        private const double latitudeMinValue = -90;
+        private const double latitudeMaxValue = 90;
+        private const double longitudeMinValue = -180;
+        private const double longitudeMaxValue = 180;
 
         private string name;
         private int age;
@@ -49,6 +54,8 @@ namespace CarProject
 
         public List<Car> Cars => this.carCollection;
 
+        public List<double> Coordinates { get; private set; }
+
         #endregion
 
         #region Method
@@ -76,29 +83,40 @@ namespace CarProject
         {
             Random random = new Random();
 
-            this.latitude = random.Next(-90, 91);
-            this.longitude = random.Next(-180, 181);
+            if (this.Coordinates == null)
+            {
+                this.Coordinates = new List<double>();
 
-            return ChangeCoordinates(longitude, latitude, random);
+                this.latitude = random.NextDouble() * (latitudeMaxValue - latitudeMinValue) + latitudeMinValue;
+                this.longitude = random.NextDouble() * (longitudeMaxValue - longitudeMinValue) + longitudeMinValue;
+
+                Coordinates.Add(this.latitude);
+                Coordinates.Add(this.longitude);
+
+                return ChangeCoordinates(Coordinates[0], Coordinates[1], random);
+            }
+
+            return ChangeCoordinates(Coordinates[0], Coordinates[1], random);
         }
 
-        private double ChangeCoordinates(double longitude, double latitudes, Random random)
+        private double ChangeCoordinates(double latitude, double longitude, Random random)
         {
-            GeoCoordinate initialCoodinates = new GeoCoordinate(latitudes, longitude);
+            GeoCoordinate initialCoodinates = new GeoCoordinate(latitude, longitude);
 
             double maxLatitude = latitude + RangeModifier;
-            double minLatitude = latitude - RangeModifier;
+            double minLatitude = maxLatitude - RangeModifier;
 
             double newLatitude = random.NextDouble() * (maxLatitude - minLatitude) + minLatitude;
 
             double maxLongtitude = longitude + RangeModifier;
-            double minLongtitude = longitude - RangeModifier;
+            double minLongtitude = maxLongtitude - RangeModifier;
 
             double newLongitude = random.NextDouble() * (maxLongtitude - minLongtitude) + minLongtitude;
 
-            if(ValiteCoordinates(newLatitude, newLongitude))
+            if (ValiteCoordinates(newLatitude, newLongitude))
             {
-                return ChangeCoordinates(longitude, latitudes, random);
+                Console.WriteLine("Ivalidddddddddddd");
+                return ChangeCoordinates(Coordinates[0], Coordinates[1], random);
             }
 
             GeoCoordinate newCoordinates = new GeoCoordinate(newLatitude, newLongitude);
@@ -108,10 +126,13 @@ namespace CarProject
 
             if (distance <= 5000)
             {
+                Coordinates[0] = newLatitude;
+                Coordinates[1] = newLongitude;
+
                 return distance;
             }
 
-            return ChangeCoordinates(longitude, latitudes, random);
+            return ChangeCoordinates(Coordinates[0], Coordinates[1], random);
         }
 
         private bool ValiteCoordinates(double newLatitude, double newLongitude)
