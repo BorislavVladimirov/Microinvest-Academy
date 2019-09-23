@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using TestProject.Contracts;
+using CarFactory.Contracts;
 
-namespace TestProject
+namespace CarFactory
 {
     public class Factory
     {

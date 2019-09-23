@@ -1,7 +1,7 @@
 ﻿using System;
-using TestProject.Contracts;
+using CarFactory.Contracts;
 
-namespace TestProject
+namespace CarFactory
 {
     public class Program
     {
