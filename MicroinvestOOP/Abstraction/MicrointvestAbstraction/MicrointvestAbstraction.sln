@@ -5,6 +5,10 @@ VisualStudioVersion = 16.0.29306.81
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarFactory", "TestProject\CarFactory.csproj", "{421B98AA-6452-436E-B84C-8AB8B11D74EC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectPeople", "ProjectPeople\ProjectPeople.csproj", "{8CDBBED7-6E37-402A-9543-A19190331F08}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeskAndEmployee", "TeskAndEmployee\TeskAndEmployee.csproj", "{9607D158-11D9-456A-879E-92A8DB55562A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{421B98AA-6452-436E-B84C-8AB8B11D74EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{421B98AA-6452-436E-B84C-8AB8B11D74EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{421B98AA-6452-436E-B84C-8AB8B11D74EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8CDBBED7-6E37-402A-9543-A19190331F08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CDBBED7-6E37-402A-9543-A19190331F08}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CDBBED7-6E37-402A-9543-A19190331F08}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CDBBED7-6E37-402A-9543-A19190331F08}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9607D158-11D9-456A-879E-92A8DB55562A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9607D158-11D9-456A-879E-92A8DB55562A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9607D158-11D9-456A-879E-92A8DB55562A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9607D158-11D9-456A-879E-92A8DB55562A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
