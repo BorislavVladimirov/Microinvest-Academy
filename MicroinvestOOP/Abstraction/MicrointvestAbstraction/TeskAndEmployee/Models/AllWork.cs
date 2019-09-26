@@ -15,7 +15,6 @@ namespace TeskAndEmployee.Models
         public AllWork()
         {
             FreePlacesForTasks = GlobalConstants.InitialTasksCount;
-            CurrentUnassignedTask = GlobalConstants.InitialIndex;
         }
 
         #endregion
@@ -42,26 +41,26 @@ namespace TeskAndEmployee.Models
                 Tasks = new List<Task>();
             }
 
+            CurrentUnassignedTask = GlobalConstants.InitialIndex;
+
             this.Tasks.Add(task);
             FreePlacesForTasks--;
         }
 
         public Task GetNextTask()
         {
-            if (CurrentUnassignedTask > 10)
+            if (this.Tasks.Count == 0)
             {
                 throw new ArgumentException(GlobalConstants.TaskNotAvailable);
             }
 
             FreePlacesForTasks++;
-            CurrentUnassignedTask++;
 
-            return Tasks[CurrentUnassignedTask - 1];
-        }
+            Task tempTask = Tasks[CurrentUnassignedTask];
 
-        public bool IsAllWorkDone()
-        {
-            return FreePlacesForTasks == 0 ? true : false;
+            this.Tasks.RemoveAt(0);
+
+            return tempTask;
         }
         #endregion
     }

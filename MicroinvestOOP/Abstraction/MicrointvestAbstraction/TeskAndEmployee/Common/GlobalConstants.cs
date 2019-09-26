@@ -4,7 +4,7 @@ using System.Text;
 
 namespace TeskAndEmployee.Common
 {
-    public class GlobalConstants
+    public static class GlobalConstants
     {
         public const string InvalidName = "Name should not be null or empty!";
 
@@ -18,15 +18,27 @@ namespace TeskAndEmployee.Common
 
         public const string NotEnoghtFreeSpaceForNewTask = "There are no free spaces for new tasks!";
 
-        public const string NewWorkDayHasStarted = "New work day started. Working hours are set to 8";
+        public const string NewWorkDayHasStarted = "Working hours are set to 8. New work day started for";
 
-        public const string HourseLeft = "Working hours left:";
+        public const string HoursLeft = "Working hours left:";
 
         public const string SetHourseLeft = "Working hours set to:";
 
-        public const string AllWorkSetSuccessfully = "All work set seccessfully";
+        public const string AllWorkSetSuccessfully = "All work set seccessfully.";
 
-        public const string CurrentTaskSetSuccessfuly = "Current task is set seccessfully";
+        public const string CurrentTaskSetSuccessfuly = "Current task is set seccessfully.";
+
+        public const string WorkingOnPreviousTask = "Working on previuos task!!!";
+
+        public const string AllTasksDone = "All tasks are successfully done!";
+
+        public const string DaysElapsed = "Days elapsed:";
+
+        public const string RemainingTasks = "Remaining tasks:";
+
+        public const string RemainingTaskHours = "Remaining tasks hours:";
+
+        public const string TaskName = "Task name:";
 
         public const string GetName = "Name:";
 
@@ -35,6 +47,5 @@ namespace TeskAndEmployee.Common
         public const int InitialWorkingHours = 8;
 
         public const int InitialIndex = 0;
-
     }
 }

@@ -8,7 +8,6 @@ namespace TeskAndEmployee.Models
     public class Employee
     {
         #region Declarations
-
         private string name;
         #endregion
 
@@ -51,28 +50,39 @@ namespace TeskAndEmployee.Models
         #region Methods
         public string Work()
         {
-            if (this.CurrentTask != null)
+            StringBuilder sb = new StringBuilder();
+
+            while (this.HoursLeft > 0)
             {
-                while (this.HoursLeft != 0)
+                if (this.HoursLeft < CurrentTask.WorkingHours)
                 {
-                    if (this.HoursLeft < CurrentTask.WorkingHours)
-                    {
-                        this.CurrentTask.WorkingHours -= this.HoursLeft;
-                        this.HoursLeft = 0;
+                    this.CurrentTask.WorkingHours -= this.HoursLeft;
+                    this.HoursLeft = 0;
 
-                        return ShowReport();
-                    }
+                    sb.AppendLine(ShowReport());
 
-                    this.HoursLeft -= this.CurrentTask.WorkingHours;
-                    this.CurrentTask.WorkingHours = 0;
-
-                    SetCurrentTask(AllWork.GetNextTask());
+                    return sb.ToString();
                 }
 
-                return ShowReport();
+                this.HoursLeft -= this.CurrentTask.WorkingHours;
+                this.CurrentTask.WorkingHours = 0;
+
+                sb.AppendLine(ShowReport());
+
+                if (AllWork.Tasks.Count > 0)
+                {
+                    this.CurrentTask = AllWork.GetNextTask();
+                    continue;
+                }
+
+                if (CurrentTask.WorkingHours == 0 && AllWork.Tasks.Count == 0)
+                {
+                    this.CurrentTask = null;
+                    return sb.ToString();
+                }
             }
 
-            return GlobalConstants.TaskNotAvailable;
+            return sb.ToString();
         }
 
         private string ShowReport()
@@ -80,9 +90,9 @@ namespace TeskAndEmployee.Models
             StringBuilder sb = new StringBuilder();
 
             sb.AppendLine(GetName());
-            sb.AppendLine($"TaskName: {this.CurrentTask.Name}");
-            sb.AppendLine($"Remaining employee working hours: {GetHoursLeft()}");
-            sb.AppendLine($"Ramaining task hours: {this.CurrentTask.WorkingHours}");
+            sb.AppendLine(string.Format("{0} {1}", GlobalConstants.TaskName, this.CurrentTask.Name));
+            sb.AppendLine(string.Format("{0} {1}", GlobalConstants.HoursLeft, GetHoursLeft()));
+            sb.AppendLine(string.Format("{0} {1}", GlobalConstants.RemainingTaskHours, this.CurrentTask.WorkingHours));
 
             return sb.ToString();
         }
@@ -91,7 +101,7 @@ namespace TeskAndEmployee.Models
         {
             this.HoursLeft = GlobalConstants.InitialWorkingHours;
 
-            return GlobalConstants.NewWorkDayHasStarted;
+            return string.Format("{0} {1}", GlobalConstants.NewWorkDayHasStarted, this.Name);
         }
 
         public string GetName()
@@ -112,12 +122,13 @@ namespace TeskAndEmployee.Models
         public string SetCurrentTask(Task task)
         {
             this.CurrentTask = task;
+
             return GlobalConstants.CurrentTaskSetSuccessfuly;
         }
 
         public string GetHoursLeft()
         {
-            return string.Format("{0} {1}", GlobalConstants.HourseLeft, this.HoursLeft);
+            return string.Format("{0} {1}", GlobalConstants.HoursLeft, this.HoursLeft);
         }
 
         public string SetHoursLeft(int hoursLeft)
@@ -128,8 +139,8 @@ namespace TeskAndEmployee.Models
             }
 
             this.HoursLeft = hoursLeft;
-            return string.Format("{0} {1}", GlobalConstants.SetHourseLeft, this.HoursLeft);
 
+            return string.Format("{0} {1}", GlobalConstants.SetHourseLeft, this.HoursLeft);
         }
 
         public AllWork GetAllWork()
