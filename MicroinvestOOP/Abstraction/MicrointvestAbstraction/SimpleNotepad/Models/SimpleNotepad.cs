@@ -1,15 +1,17 @@
-﻿using SimpleNotepad.Common;
-using SimpleNotepad.Interfaces;
+﻿using SimpleAndSecuredNotepad.Common;
+using SimpleAndSecuredNotepad.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SimpleNotepad.Models
+namespace SimpleAndSecuredNotepad.Models
 {
     public class SimpleNotepad : INotepad
     {
         #region Declarations
+
         private List<IPage> pages;
+
         #endregion
 
         #region Initializations
@@ -43,14 +45,14 @@ namespace SimpleNotepad.Models
         {
             ValidatePageIndex(pageNumber);
 
-            pages[pageNumber - 1].AddText(text);
+            Pages[pageNumber - 1].AddText(text);
         }
 
         public string BrowsePage()
         {
             StringBuilder sb = new StringBuilder();
 
-            foreach (var page in pages)
+            foreach (var page in Pages)
             {
                 sb.AppendLine(page.BrowsePage());
             }
@@ -62,15 +64,48 @@ namespace SimpleNotepad.Models
         {
             ValidatePageIndex(pageNumber);
 
-            pages[pageNumber - 1].DeleteText();
+            Pages[pageNumber - 1].DeleteText();
         }
 
         public void ReplaceText(int pageNumber, string text)
         {
             ValidatePageIndex(pageNumber);
 
-            pages[pageNumber - 1].DeleteText();
-            pages[pageNumber - 1].AddText(text);
+            Pages[pageNumber - 1].DeleteText();
+            Pages[pageNumber - 1].AddText(text);
+        }
+
+        public string SearchWord(string word)
+        {
+            foreach (var page in this.Pages)
+            {
+                if (page.SearchWord(word))
+                {
+                    return GlobalConstants.PresentWord + Environment.NewLine;
+                }
+            }
+
+            return GlobalConstants.WordNotPresent + Environment.NewLine;
+        }
+
+        public string PrintAllPagesWithDigits()
+        {
+            StringBuilder sb = new StringBuilder();
+
+            foreach (var page in this.Pages)
+            {
+                if (page.ContainsDigits())
+                {
+                    sb.AppendLine(page.BrowsePage());
+                }
+            }
+
+            if (sb == null)
+            {
+                return GlobalConstants.NoDigitsPresent + Environment.NewLine;
+            }
+
+            return sb.ToString() + Environment.NewLine;
         }
 
         private void ValidatePageIndex(int pageNumber)
@@ -80,6 +115,7 @@ namespace SimpleNotepad.Models
                 throw new ArgumentException(GlobalConstants.InvalidPageNumber);
             }
         }
+
         #endregion
     }
 }

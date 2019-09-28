@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SimpleNotepad.Interfaces
+namespace SimpleAndSecuredNotepad.Interfaces
 {
     public interface IBrowsable
     {

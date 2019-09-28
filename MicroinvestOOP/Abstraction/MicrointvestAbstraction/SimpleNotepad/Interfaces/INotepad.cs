@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SimpleNotepad.Interfaces
+namespace SimpleAndSecuredNotepad.Interfaces
 {
     public interface INotepad : IBrowsable
     {
@@ -11,5 +11,9 @@ namespace SimpleNotepad.Interfaces
         void ReplaceText(int pageNumber, string text);
 
         void DeleteText(int pageNumber);
+
+        string SearchWord(string word);
+
+        string PrintAllPagesWithDigits();
     }
 }

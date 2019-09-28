@@ -3,34 +3,30 @@ using SimpleAndSecuredNotepad.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Text.RegularExpressions;
 
 namespace SimpleAndSecuredNotepad.Models
 {
-    public class SecuredNotepad : ISecuredNotepad
+    public class ElectronicSecuredNotepad : IЕlectronicDevice, ISecuredNotepad
     {
         #region Declarations
 
+        private bool isDeviceWorking;
         private List<IPage> pages;
-        private readonly string password;
+        private  readonly string password;
 
         #endregion
 
         #region Initializations
 
-        public SecuredNotepad(List<IPage> pages, string password)
+        public ElectronicSecuredNotepad(List<IPage> pages, string password)
         {
-            this.password = password;
-
-            ValidatePassword(this.password);
-
             this.Pages = pages;
+            this.password = password;
         }
-        
         #endregion
 
         #region Properties
-
+        
         public List<IPage> Pages
         {
             get => pages;
@@ -51,17 +47,36 @@ namespace SimpleAndSecuredNotepad.Models
 
         #region PublicMethods
 
+        public bool IsStarted()
+        {
+            return this.isDeviceWorking;
+        }
+
+        public void Start()
+        {
+            this.isDeviceWorking = true;
+        }
+
+        public void Stop()
+        {
+            this.isDeviceWorking = false;
+        }
+
         public void AddText(int pageNumber, string text, string password)
         {
+            CheckIsDeviceSwitchedOn(isDeviceWorking);
+
             PasswordCheck(this.password, password);
 
             ValidatePageIndex(pageNumber);
 
             Pages[pageNumber - 1].AddText(text);
-        }
-       
+        }             
+
         public string BrowsePage(string password)
         {
+            CheckIsDeviceSwitchedOn(isDeviceWorking);
+
             PasswordCheck(this.password, password);
 
             StringBuilder sb = new StringBuilder();
@@ -76,6 +91,8 @@ namespace SimpleAndSecuredNotepad.Models
 
         public void DeleteText(int pageNumber, string password)
         {
+            CheckIsDeviceSwitchedOn(isDeviceWorking);
+
             PasswordCheck(this.password, password);
 
             ValidatePageIndex(pageNumber);
@@ -85,6 +102,8 @@ namespace SimpleAndSecuredNotepad.Models
 
         public void ReplaceText(int pageNumber, string text, string password)
         {
+            CheckIsDeviceSwitchedOn(isDeviceWorking);
+
             PasswordCheck(this.password, password);
 
             ValidatePageIndex(pageNumber);
@@ -112,25 +131,16 @@ namespace SimpleAndSecuredNotepad.Models
             }
         }
 
-        private void ValidatePassword(string password)
+        private void CheckIsDeviceSwitchedOn(bool isDeviceWorking)
         {
-            Regex length = new Regex("^.{5,}$");
-            Regex digit = new Regex("\\d");
-            Regex lowerChar = new Regex("[a-z]");
-            Regex upperChar = new Regex("[A-Z]");
-
-
-            if (!length.IsMatch(password) || !digit.IsMatch(password) 
-                || !lowerChar.IsMatch(password) 
-                || !upperChar.IsMatch(password))
+            if (!isDeviceWorking)
             {
-                throw new ArgumentException(GlobalConstants.PasswordNotStrongEnough);
+                throw new ArgumentException(GlobalConstants.DevideNotSwitchedOn + Environment.NewLine);
             }
         }
 
-        #endregion
+        #endregion     
 
         #endregion
-
     }
 }

@@ -4,8 +4,12 @@ using System.Text;
 
 namespace SimpleAndSecuredNotepad.Interfaces
 {
-    public interface IDeletable
+    public interface IЕlectronicDevice
     {
-        void DeleteText();
+        void Start();
+
+        void Stop();
+
+        bool IsStarted();
     }
 }

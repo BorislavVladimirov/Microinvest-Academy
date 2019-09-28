@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectPeople", "ProjectPeo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TeskAndEmployee", "TeskAndEmployee\TeskAndEmployee.csproj", "{9607D158-11D9-456A-879E-92A8DB55562A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleNotepad", "SimpleNotepad\SimpleNotepad.csproj", "{0D169D50-D97C-417A-B57F-D35B5C51634B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleAndSecuredNotepad", "SimpleNotepad\SimpleAndSecuredNotepad.csproj", "{0D169D50-D97C-417A-B57F-D35B5C51634B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
