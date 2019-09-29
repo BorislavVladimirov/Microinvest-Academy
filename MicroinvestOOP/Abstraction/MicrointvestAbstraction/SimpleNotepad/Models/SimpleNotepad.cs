@@ -87,7 +87,7 @@ namespace SimpleAndSecuredNotepad.Models
                 }
             }
 
-            if (sb == null)
+            if (sb.Length == 0)
             {
                 return GlobalConstants.NoDigitsPresent + Environment.NewLine;
             }
