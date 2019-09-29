@@ -48,7 +48,9 @@ namespace SimpleAndSecuredNotepad
             //securedNotepad.AddText(2, "Maecenas eu mauris nec felis feugiat placerat ut quis lacus.", "isThisTheRightPassWord");
 
             INotepad simpleNotepad = new SimpleNotepad(pages);
+            Console.WriteLine(simpleNotepad.SearchWord("lorem"));
             ISecuredNotepad securedNotepad1 = new SecuredNotepad(pages, "PassWord1");
+            securedNotepad1.ReplaceText(10, "text is editted!", "PassWord1");
             ISecuredNotepad notepad = new SecuredNotepad(pages, "11111Ab");
 
             // testing notepads

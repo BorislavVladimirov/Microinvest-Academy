@@ -11,7 +11,6 @@ namespace SimpleAndSecuredNotepad.Models
         #region Declarations
 
         private bool isDeviceWorking;
-        private List<IPage> pages;
         private  readonly string password;
 
         #endregion
@@ -26,21 +25,9 @@ namespace SimpleAndSecuredNotepad.Models
         #endregion
 
         #region Properties
-        
-        public List<IPage> Pages
-        {
-            get => pages;
 
-            private set
-            {
-                if (pages == null)
-                {
-                    pages = new List<IPage>();
-                }
+        public List<IPage> Pages { get; } = new List<IPage>();
 
-                pages = value;
-            }
-        }
         #endregion
 
         #region Methods
@@ -117,7 +104,7 @@ namespace SimpleAndSecuredNotepad.Models
 
         private void ValidatePageIndex(int pageNumber)
         {
-            if (pageNumber <= 0 || pageNumber > pages.Count - 1)
+            if (pageNumber <= 0 || pageNumber > Pages.Count)
             {
                 throw new ArgumentException(GlobalConstants.InvalidPageNumber);
             }

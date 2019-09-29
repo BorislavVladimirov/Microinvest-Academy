@@ -15,14 +15,17 @@ namespace TeskAndEmployee.Models
         #endregion
 
         #region Initializations
+
         public Task(string name, int workingHours)
         {
             Name = name;
             WorkingHours = workingHours;
         }
+
         #endregion
 
         #region Properties
+
         public string Name
         {
             get => name;

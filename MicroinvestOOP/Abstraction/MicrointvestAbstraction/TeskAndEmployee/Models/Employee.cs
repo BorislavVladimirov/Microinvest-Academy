@@ -8,7 +8,9 @@ namespace TeskAndEmployee.Models
     public class Employee
     {
         #region Declarations
+
         private string name;
+
         #endregion
 
         #region Initializations
@@ -16,6 +18,7 @@ namespace TeskAndEmployee.Models
         {
             this.Name = name;
         }
+
         #endregion
 
         #region Properties

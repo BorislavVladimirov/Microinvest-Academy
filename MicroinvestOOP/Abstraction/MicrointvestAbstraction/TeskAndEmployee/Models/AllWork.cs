@@ -8,7 +8,7 @@ namespace TeskAndEmployee.Models
     public class AllWork
     {
         #region Declarations
-
+        private List<Task> tasks;
         #endregion
 
         #region Initializations
@@ -21,11 +21,12 @@ namespace TeskAndEmployee.Models
 
         #region Properties
 
-        public List<Task> Tasks { get; private set; }
+        public List<Task> Tasks { get; } = new List<Task>();
 
         public int FreePlacesForTasks { get; private set; }
 
         public int CurrentUnassignedTask { get; private set; }
+
         #endregion
 
         #region Methods
@@ -34,11 +35,6 @@ namespace TeskAndEmployee.Models
             if (FreePlacesForTasks == 0)
             {
                 throw new ArgumentException(GlobalConstants.NotEnoghtFreeSpaceForNewTask);
-            }
-
-            if (Tasks == null)
-            {
-                Tasks = new List<Task>();
             }
 
             CurrentUnassignedTask = GlobalConstants.InitialIndex;
