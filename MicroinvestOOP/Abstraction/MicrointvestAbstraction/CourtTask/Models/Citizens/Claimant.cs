@@ -6,11 +6,11 @@ namespace CourtTask.Models.Citizens
 {
     public class Claimant : Citizen
     {
-        public Claimant(string name, string adress, int age) 
-            : base(name, adress, age)
+        public Claimant(string id,string name, string adress, int age) 
+            : base(id,name, adress, age)
         {
         }
 
-        public HashSet<LegalEntity> Lawyers { get; set; } = new HashSet<LegalEntity>();
+        public List<LegalEntity> Lawyers { get; set; } = new List<LegalEntity>();
     }
 }

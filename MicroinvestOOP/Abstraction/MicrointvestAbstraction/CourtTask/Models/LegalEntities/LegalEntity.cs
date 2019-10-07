@@ -1,24 +1,23 @@
 ﻿using CourtTask.Common;
-using CourtTask.Models.Citizens.Interfaces;
+using CourtTask.Interfaces;
+using CourtTask.Models.Citizens;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace CourtTask.Models.Citizens
+namespace CourtTask.Models
 {
-    public abstract class Citizen : ICitizen
+    public abstract class LegalEntity : ILegalEntity
     {
         private string name;
-        private string adress;
-        private int age;
+        private string position;
         private string id;
 
-        public Citizen(string id, string name, string adress, int age)
+        public LegalEntity(string id, string name, string position)
         {
             ID = id;
             Name = name;
-            Adress = adress;
-            Age = age;
+            Position = position;
         }
 
         public string ID
@@ -89,49 +88,44 @@ namespace CourtTask.Models.Citizens
             }
         }
 
-        public string Adress
+        public string Position
         {
-            get => this.adress;
+            get => this.position;
 
             protected set
             {
-                if (value == this.adress)
+                if (value == this.position)
                 {
                     return;
                 }
 
-                if (string.IsNullOrWhiteSpace(value))
+                if (value.ToLower() != "judge" && value.ToLower() != "judicial assessor"
+                    && value.ToLower() != "lawyer" && value.ToLower() != "prosecutor")
                 {
-                    throw new ArgumentException(GlobalConstants.InvalidAdress);
+                    throw new ArgumentException(GlobalConstants.InvalidPosition);
                 }
 
-                this.adress = value;
+                this.position = value;
             }
         }
 
-        public int Age
+        public virtual int YearsOfExperience { get; protected set; }
+
+        public virtual int LawsuitsCount { get; set; }
+
+        public void AddNotes(string note)
         {
-            get => this.age;
 
-            protected set
-            {
-                if (value == this.age)
-                {
-                    return;
-                }
+        }
 
-                if (value < 18)
-                {
-                    throw new ArgumentException(GlobalConstants.InvalidAge);
-                }
+        public void AskQuestion(Citizen citizen, string question)
+        {
 
-                this.age = value;
-            }
         }
 
         public override string ToString()
         {
-            return string.Format(" {0} {1} ", GlobalConstants.CitizenInfo, this.Name);
+            return string.Format(" {0} {1} {2}", GlobalConstants.ParticipantInfo, this.Name, this.Position);
         }
     }
 }

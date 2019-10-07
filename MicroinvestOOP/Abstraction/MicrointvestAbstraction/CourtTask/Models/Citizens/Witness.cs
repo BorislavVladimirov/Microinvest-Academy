@@ -6,8 +6,8 @@ namespace CourtTask.Models.Citizens
 {
     public class Witness : Citizen
     {
-        public Witness(string name, string adress, int age) 
-            : base(name, adress, age)
+        public Witness(string id, string name, string adress, int age)
+            : base(id, name, adress, age)
         {
         }
     }

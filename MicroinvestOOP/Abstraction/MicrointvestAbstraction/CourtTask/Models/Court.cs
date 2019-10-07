@@ -1,31 +1,24 @@
 ﻿using CourtTask.Common;
+using CourtTask.Interfaces;
+using CourtTask.Models.Lawsuits;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Text;
 
 namespace CourtTask.Models
 {
-    public class Court
+    public class Court : ICourt, IAdress
     {
-        #region Declarations
-
         private string name;
         private string adress;
-
-        #endregion
-
-
-        #region Initializations
 
         public Court(string name, string adress)
         {
             Name = name;
             Adress = adress;
         }
-
-        #endregion
-
-        #region Properties
 
         public string Name
         {
@@ -44,7 +37,7 @@ namespace CourtTask.Models
                 }
 
                 this.name = value;
-            }               
+            }
         }
 
         public string Adress
@@ -67,14 +60,25 @@ namespace CourtTask.Models
             }
         }
 
-        public HashSet<LegalEntity> LegalEntities { get; } = new HashSet<LegalEntity>();
+        public List<LegalEntity> LegalEntities { get; set; } = new List<LegalEntity>();
 
-        public HashSet<Lawsuit> Lawsuits { get; } = new HashSet<Lawsuit>();
+        public List<Lawsuit> Lawsuits { get; set; } = new List<Lawsuit>();
 
-        #endregion
+        public void GetLegalEntitiesReport()
+        {
+            StringBuilder sb = new StringBuilder();
 
-        #region Methods
+            foreach (var legalEntity in this.LegalEntities.OrderBy(l => l.Name))
+            {
+                sb.AppendLine(string.Format("{0} {1} {2}" ,GlobalConstants.LegalEntityInfo, legalEntity.ToString(), legalEntity.LawsuitsCount));
+            }
 
-        #endregion
+            string fileName = @"D:\LegalEntitiesInfo.txt";
+
+            using (StreamWriter writer = new StreamWriter(fileName))
+            {
+                writer.WriteLine(sb.ToString());
+            }
+        }
     }
 }
