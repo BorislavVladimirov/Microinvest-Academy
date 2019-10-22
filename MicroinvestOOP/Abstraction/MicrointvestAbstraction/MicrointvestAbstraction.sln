@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TeskAndEmployee", "TeskAndE
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleAndSecuredNotepad", "SimpleNotepad\SimpleAndSecuredNotepad.csproj", "{0D169D50-D97C-417A-B57F-D35B5C51634B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CourtTask", "CourtTask\CourtTask.csproj", "{4AEB159E-7DCC-451E-A0AD-F6B3F37DCC62}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CourtTask", "CourtTask\CourtTask.csproj", "{4AEB159E-7DCC-451E-A0AD-F6B3F37DCC62}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{CE2125EB-412E-4990-88E2-71EA93C53732}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{4AEB159E-7DCC-451E-A0AD-F6B3F37DCC62}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4AEB159E-7DCC-451E-A0AD-F6B3F37DCC62}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4AEB159E-7DCC-451E-A0AD-F6B3F37DCC62}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE2125EB-412E-4990-88E2-71EA93C53732}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE2125EB-412E-4990-88E2-71EA93C53732}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE2125EB-412E-4990-88E2-71EA93C53732}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE2125EB-412E-4990-88E2-71EA93C53732}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

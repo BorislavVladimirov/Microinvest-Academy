@@ -73,10 +73,19 @@ namespace CourtTask.Models
 
             string fileName = @"D:\CourtReport.txt";
 
-            using (StreamWriter writer = new StreamWriter(fileName))
+            if (!File.Exists(fileName))
             {
-                writer.WriteLine(sb);
+                using (StreamWriter writer = new StreamWriter(fileName))
+                {
+                    writer.WriteLine(sb);
+                }
             }
+            else
+            {
+
+            }
+
+            
         }
     }
 }
